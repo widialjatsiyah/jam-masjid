@@ -43,27 +43,14 @@
                         <p class="text-center grey-text">Lihat jadwal Shalat?
                             <a href="<?php echo base_url() ?>front" class="blue-text">Klik Di Sini</a>
                         </p>
-                        <div class="float-left text-center">
-                            <a type="button" data-url="<?php echo base_url(); ?>publik/action" data-tipe="shutdown" class="system btn-floating btn-unique btn-sm waves-effect waves-light">
-                                <i class="fa fa-power-off"></i>
-                            </a>
-                            <p class="grey-text"> SHUTDOWN </p>
-                        </div>
-                        <div class="float-right text-center">
-                            <a type="button" data-url="<?php echo base_url(); ?>publik/action" data-tipe="restart" class="system btn-floating btn-blue-grey btn-sm waves-effect waves-light">
-                                <i class="fa fa-repeat"></i>
-                            </a>
-                            <p class="grey-text"> RESTART </p>
-                        </div>
+                        
                     </div>
                 </div>
 
                 <div class="row">
                 <div class="col"> <hr>
                 <div class="row">
-	                <div class="col-9">
-                        &copy  <?php echo date("Y"); ?><a href="http://xbxteam.web.id/"> XbX-Team</a>
-                    </div>
+	               
                     <div class="col-3"><?php //echo get_versi(); ?></div>
                 </div>
                 </div>
