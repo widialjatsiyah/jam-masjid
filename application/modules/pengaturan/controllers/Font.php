@@ -86,7 +86,7 @@ class Font extends MX_Controller {
 		$date = date("Y-m-d H:i:s");
 	    $result['status'] = false;
 
-		$config['upload_path']          = FCPATH . 'uploads/fonts/';
+		$config['upload_path']          = FCPATH . 'public/uploads/fonts/';
         $config['allowed_types']        = 'ttf';
 		$config['overwrite'] 			= TRUE;
 		$config['remove_spaces'] 		= TRUE;
@@ -188,7 +188,7 @@ class Font extends MX_Controller {
 
 		$tipe = (@$input['tipe'] == 'picture') ? 'images' : 'videos';
 
-	    $upload_path = FCPATH . 'uploads/fonts/' . $input['file']; # check path is correct
+	    $upload_path = FCPATH . 'public/uploads/fonts/' . $input['file']; # check path is correct
 
 		$where 	= [$this->tblprefix . 'id' => @$input['id']];
 		$data[$this->tblprefix . 'isdelete'] = '1';			

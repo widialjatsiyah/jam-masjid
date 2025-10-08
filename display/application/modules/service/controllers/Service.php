@@ -103,12 +103,12 @@ class Service extends MX_Controller {
 		$where['where'] = ['background_tipe' => $input['tipe'], 'background_status' => '1', 'background_isdelete' => '0'];
 		$getdata = _CI()->m_crud->getdata('array','set_background', '*', $where);
 
-		$path = str_replace("display/", "", base_url()) . "uploads/" . $tipe . "/";
+		$path = str_replace("display/", "", base_url()) . "public/uploads/" . $tipe . "/";
 
 		$data = [];
 		foreach ($getdata as $key => $value) {
 			$data[] = $path.$value['background_file'];
-			// str_replace('_client', '', base_url()) . 'uploads/' . $tipe . '/' . 
+			// str_replace('_client', '', base_url()) . 'public/uploads/' . $tipe . '/' . 
 		}
 
 		shuffle($data);

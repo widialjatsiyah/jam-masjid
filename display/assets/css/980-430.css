@@ -4,7 +4,7 @@
     }
 
     .nama {
-        font-size: 30px;
+        /* font-size: 30px; */
         font-weight: 900;
     }
 
@@ -17,8 +17,11 @@
     }
 
     .jam {
-        font-size: 40px;
+    border-radius: 5px;
+    /* text-shadow: 0 0 10px #fff, 0 0 20px #ffb700; */
+        font-size: 90px;
         font-weight: 900;
+        letter-spacing: 20px;
     }
 
     .hari {
@@ -42,15 +45,17 @@
     .waktu-shalat > h1 {
         padding-bottom: 5px;
         margin-top: -5px;
-        font-size: 30px;
+        font-size: 40px;
         font-weight: 900 !important;
         text-shadow: -2px 2px 2px #000;
     }
 
     .waktu-shalat > h2 {
+        
+        background: linear-gradient(to right, #000000, #b87f23);
         text-shadow: -2px 2px 2px #000;
         padding-top: 5px;
-        font-size: 20px;
+        font-size: 30px;
         font-weight: 600 !important;
     }
 
@@ -60,9 +65,10 @@
 
     .running-text {
         max-height: 38px; 
-        font-size: 20px;
-        font-weight: bolder;
+        font-size: 27px;
+        font-weight: 400;
         padding-bottom: 42px;
+        width: 100%;
     }
 
     .content {

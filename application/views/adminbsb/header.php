@@ -145,6 +145,13 @@
                     </li>
 
                     <li class="">
+                        <a href="<?php echo base_url(); ?>about">
+                            <i class="material-icons col-indigo">update</i>
+                            <span>About</span>
+                        </a>
+                    </li>
+
+                    <li class="">
                         <a href="<?php echo base_url(); ?>auth/logout">
                             <i class="material-icons col-indigo">exit_to_app</i>
                             <span>Keluar</span>
@@ -157,7 +164,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2018 <?php echo (date("Y") == "2018") ? "" : " - " . date("Y"); ?> <a href="http://xbxteam.web.id/">Walproject</a>
+                    &copy; 2018 <?php echo (date("Y") == "2018") ? "" : " - " . date("Y"); ?> <a href="http://xbxteam.web.id/">XbX Team</a>
 
                 </div>
                 <div class="version">

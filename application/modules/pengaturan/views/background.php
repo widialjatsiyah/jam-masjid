@@ -54,7 +54,7 @@
 
 							      	<td class="">
 								      	<?php if ($value['background_tipe'] == 'picture' ) { ?>
-								      			<img width="100" src="<?php echo base_url(); ?>uploads/images/<?php echo $value['background_file']; ?>">
+								      			<img width="100" src="<?php echo base_url(); ?>public/uploads/images/<?php echo $value['background_file']; ?>">
 								      		
 								      	<?php } else { ?>
 								      		<?php echo $value['background_file']; ?>

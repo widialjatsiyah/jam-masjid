@@ -9,7 +9,7 @@
 	<meta http-equiv="expires" content="Tue, 18 Feb 1991 1:00:00 GMT" />
 	<meta http-equiv="pragma" content="no-cache" />
 
-	<title>Walproject - Jadwal Shalat & Informasi</title>
+	<title>XbX Team - Jadwal Shalat & Informasi</title>
 
 	<!-- <link href="https://fonts.googleapis.com/css?family=Scheherazade" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -33,10 +33,18 @@
 	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bigvideo/css/style.css"> -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bigvideo/bower_components/BigVideo/css/bigvideo.css">
 
+
 	<!-- <link href="https://fonts.googleapis.com/css?family=Scheherazade:400,700&amp;subset=arabic" rel="stylesheet"> -->
 	<style type="text/css">
 		@font-face {
-			src: url('<?php echo str_replace('display/', '', base_url());  ?>uploads/fonts/<?php echo app_get_font()->font_src; ?>');
+			font-family: 'Digital';
+			src: url('<?php echo str_replace('display/', '', base_url());  ?>public/uploads/fonts/DS-DIGI.ttf') format('truetype');
+			font-weight: bolder;
+			font-style: normal;
+		}
+
+		@font-face {
+			src: url('<?php echo str_replace('display/', '', base_url());  ?>public/uploads/fonts/<?php echo app_get_font()->font_src; ?>');
 			font-family: '<?php echo app_get_font()->font_family; ?>';
 			font-style: <?php echo strtolower(app_get_font()->font_style); ?>;
 			font-weight: <?php echo app_get_font()->font_weight; ?>;
@@ -46,11 +54,6 @@
 			font-family: '<?php echo app_get_font()->font_family; ?>';
 			background-color: #000000;
 		}
-
-		.no-padding-margin {
-			margin: 0 !important;
-			padding: 0 !important;
-		}
 	</style>
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
@@ -59,223 +62,33 @@
 
 <body class="fullBackground">
 
-	<div class="wrapper container-fluid">
-		<div class="row">
-			<div class="col-2 p-0 m-0">
-				<div class="row ws-container p-0" style="height: 90vh;">
-					<div class="col-md-12 col-lg-12 col-xl-12 p-0 m-0">
-						<div class="fs-jumat owl-carousel bg-light m-0 p-0">
-							<div class="item m-0 p-0">
-								<p class="ket-head text-center m-0 p-0">Petugas Shalat</p>
-								<p class="ket-body today-waktu-terbit text-primary text-center m-0 p-0">Jumat</p>
-							</div>
-							<div class="item m-0 p-0">
-								<p class="ket-head text-center m-0 p-0">Petugas Shalat</p>
-								<p class="ket-body today-waktu-terbit light-green-text text-center m-0 p-0">Jumat</p>
-							</div>
-						</div>
+	<div class="wrapper">
+		<div class="header">
+			<?php echo $_utama_header; ?>
+		</div>
 
-						<div class="fs-general owl-carousel bg-light m-0 p-0">
-							<div class="item bg-light m-0 p-0">
-								<p class="ket-head text-center m-0 p-0">Jadwal Imam</p>
-								<p class="ket-body today-waktu-terbit text-primary text-center m-0 p-0">Hari ini</p>
-							</div>
-							<div class="item bg-light m-0 p-0">
-								<p class="ket-head text-center m-0 p-0">Jadwal Imam</p>
-								<p class="ket-body today-waktu-terbit light-green-text text-center m-0 p-0">Besok Hari</p>
-							</div>
-						</div>
-
-						<div class="waktu-shalat-b m-0 p-0">
-							<div class="waktu-shalat deep-orange z-depth-1 text-center m-0 p-0">
-								<h2 class="text-light m-0 p-0">Terbit</h2>
-								<h1 style="color: white;" class="m-0 p-0"><?php echo substr(jadwal_shalat()['terbit'], 0, 5); ?></h1>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 col-lg-12 col-xl-12 p-0 m-0">
-						<div class="fs-jumat owl-carousel p-0 m-0">
-							<div class="item m-0 p-0">
-								<p class="ket-head fs-jumat-ts text-center m-0 p-0">&nbsp;</p>
-								<p class="ket-body fs-jumat-tf text-primary text-center m-0 p-0">&nbsp;</p>
-							</div>
-							<div class="item m-0 p-0">
-								<p class="ket-head fs-jumat-ts-sec text-center m-0 p-0">&nbsp;</p>
-								<p class="ket-body fs-jumat-tf-sec light-green-text text-center m-0 p-0">&nbsp;</p>
-							</div>
-						</div>
-
-						<div class="waktu-shalat-b m-0 p-0">
-							<div class="waktu-shalat blue darken-3 unique z-depth-1 text-center p-0 m-0">
-								<div class="fs-general owl-carousel p-0 m-0">
-									<div class="item p-0 m-0">
-										<p class="imam-body today-waktu-subuh text-light text-center p-0 m-0"></p>
-									</div>
-									<div class="item p-0 m-0">
-										<p class="imam-body tomorrow-waktu-subuh light-green-text text-center p-0 m-0"></p>
-									</div>
-								</div>
-								<h2 class="text-light p-0 m-0">Subuh</h2>
-								<h1 style="color: white;" class="p-0 m-0"><?php echo substr(jadwal_shalat()['subuh'], 0, 5); ?></h1>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 col-lg-12 col-xl-12 p-0 m-0">
-						<div class="waktu-shalat-b m-0 p-0">
-							<div class="waktu-shalat orange darken-1 z-depth-1 text-center m-0 p-0">
-								<div class="fs-jumat owl-carousel m-0 p-0">
-									<div class="item m-0 p-0">
-										<p class="ket-head fs-jumat-muadzin-i text-center m-0 p-0">Muazin</p>
-										<p class="ket-body fs-jumat-muadzin-i-name text-light text-center m-0 p-0">&nbsp;</p>
-									</div>
-									<div class="item m-0 p-0">
-										<p class="ket-head fs-jumat-muadzin-i-sec text-center m-0 p-0">Muazin</p>
-										<p class="ket-body fs-jumat-muadzin-i-name-sec light-green-text text-center m-0 p-0">&nbsp;</p>
-									</div>
-								</div>
-
-								<div class="fs-general owl-carousel m-0 p-0">
-									<div class="item m-0 p-0">
-										<p class="imam-body today-waktu-dzuhur text-light text-center m-0 p-0"></p>
-									</div>
-									<div class="item m-0 p-0">
-										<p class="imam-body tomorrow-waktu-dzuhur light-green-text text-center m-0 p-0"></p>
-									</div>
-								</div>
-								<h2 class="text-light m-0 p-0">Dzuhur</h2>
-								<h1 style="color: white;" class="m-0 p-0"><?php echo substr(jadwal_shalat()['dzuhur'], 0, 5); ?></h1>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 col-lg-12 col-xl-12 p-0 m-0">
-						<div class="waktu-shalat-b m-0 p-0">
-							<div class="waktu-shalat deep-purple darken-3 z-depth-1 text-center m-0 p-0">
-								<div class="fs-jumat owl-carousel m-0 p-0">
-									<div class="item m-0 p-0">
-										<p class="ket-head fs-jumat-muadzin-ii text-center m-0 p-0">Khatib</p>
-										<p class="ket-body fs-jumat-muadzin-ii-name text-primary text-center m-0 p-0">&nbsp;</p>
-									</div>
-									<div class="item m-0 p-0">
-										<p class="ket-head fs-jumat-muadzin-ii-sec text-center m-0 p-0">Khatib</p>
-										<p class="ket-body fs-jumat-muadzin-ii-name-sec light-green-text text-center m-0 p-0">&nbsp;</p>
-									</div>
-								</div>
-
-								<div class="fs-general owl-carousel m-0 p-0">
-									<div class="item m-0 p-0">
-										<p class="imam-body today-waktu-ashar text-light text-center m-0 p-0"></p>
-									</div>
-									<div class="item m-0 p-0">
-										<p class="imam-body tomorrow-waktu-ashar light-green-text text-center m-0 p-0"></p>
-									</div>
-								</div>
-								<h2 class="text-light m-0 p-0">Ashar</h2>
-								<h1 style="color: white;" class="m-0 p-0"><?php echo substr(jadwal_shalat()['ashar'], 0, 5); ?></h1>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 col-lg-12 col-xl-12 p-0 m-0">
-						<div class="waktu-shalat-b m-0 p-0">
-							<div class="waktu-shalat red darken-3 z-depth-1 text-center m-0 p-0">
-								<div class="fs-jumat owl-carousel m-0 p-0">
-									<div class="item m-0 p-0">
-										<p class="ket-head fs-jumat-khatib text-center m-0 p-0">Khatib Cadangan</p>
-										<p class="ket-body fs-jumat-khatib-name text-primary text-center m-0 p-0">&nbsp;</p>
-									</div>
-									<div class="item m-0 p-0">
-										<p class="ket-head fs-jumat-khatib-sec text-center m-0 p-0">Khatib Cadangan</p>
-										<p class="ket-body fs-jumat-khatib-name-sec light-green-text text-center m-0 p-0">&nbsp;</p>
-									</div>
-								</div>
-
-								<div class="fs-general owl-carousel m-0 p-0">
-									<div class="item m-0 p-0">
-										<p class="imam-body today-waktu-maghrib text-light text-center m-0 p-0"></p>
-									</div>
-									<div class="item m-0 p-0">
-										<p class="imam-body tomorrow-waktu-maghrib light-green-text text-center m-0 p-0"></p>
-									</div>
-								</div>
-								<h2 class="text-light m-0 p-0">Maghrib</h2>
-								<h1 style="color: white;" class="m-0 p-0"><?php echo substr(jadwal_shalat()['maghrib'], 0, 5); ?></h1>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 col-lg-12 col-xl-12 p-0 m-0">
-						<div class="waktu-shalat-b m-0 p-0">
-							<div class="waktu-shalat teal darken-3 z-depth-1 text-center m-0 p-0">
-								<div class="fs-jumat owl-carousel m-0 p-0">
-									<div class="item m-0 p-0">
-										<p class="ket-head fs-jumat-imam text-center m-0 p-0">Imam</p>
-										<p class="ket-body fs-jumat-imam-name text-primary text-center m-0 p-0">&nbsp;</p>
-									</div>
-									<div class="item m-0 p-0">
-										<p class="ket-head fs-jumat-imam-sec text-center m-0 p-0">Imam</p>
-										<p class="ket-body fs-jumat-imam-name-sec light-green-text text-center m-0 p-0">&nbsp;</p>
-									</div>
-								</div>
-
-								<div class="fs-general owl-carousel m-0 p-0">
-									<div class="item m-0 p-0">
-										<p class="imam-body today-waktu-isya text-light text-center m-0 p-0"></p>
-									</div>
-									<div class="item m-0 p-0">
-										<p class="imam-body tomorrow-waktu-isya light-green-text text-center m-0 p-0"></p>
-									</div>
-								</div>
-								<h2 class="text-light m-0 p-0">Isya</h2>
-								<h1 style="color: white;" class="m-0 p-0"><?php echo substr(jadwal_shalat()['isya'], 0, 5); ?></h1>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row bg-success" style="position: fixed; bottom: 0; left: 0; right: 0;">
-					<div class="col-md-12 text-light">
-						<?php echo $_utama_footer; ?>
-					</div>
-				</div>
-			</div>
-			<div class="col-7 kontensemua">
-				<div class="header">
-					<?php echo $_utama_header; ?>
-				</div>
-
-				<div class="flex-centerx white-text">
-					<div class="content">
-						<?php echo $_utama_content; ?>
-					</div>
-				</div>
-
-				
-			</div>
-			<div class="col-3 bg-light">
-				<div class="row bg-dark">
-					<span class="hari" id="day"></span>
-					<p class="jam align-middle float-right  no-padding-margin" id="time"></p>
-
-				</div>
-				<div class="container-fluid row no-padding-margin  bg-light">
-						<div class="col-6 ">
-							<span class="tanggal_masehi" id="date_masehi"></span>
-						</div>
-						<div class="col-6">
-							<span class="tanggal_hijriah" id="date_hijriah"></span>
-						</div>
-
-						<!-- <p class="jam align-middle float-right" id="down"></p> -->
-				
-				</div>
-					<div class="row rgba-black-light-2">
-						<div class="kajian">
-						</div>
-					</div>
-					<div class="row justify-content-center align-items-center">
-						<div class="col-12 d-flex justify-content-center align-items-center">
-							<img src="https://quickchart.io/qr?text=Hello world&size=450" class="img-fluid" alt="" style="display: block;">
-						</div>
-					</div>
+		<div class="flex-centerx white-text">
+			<div class="content">
+				<?php echo $_utama_content; ?>
 			</div>
 		</div>
+
+		<div class="footer container-fluid">
+			<div class="row rgba-black-strong " style="display: none;">
+				<div class="col-md-12">
+
+				</div>
+				<!-- <div class="col-md-12 kajian"> -->
+					<!-- <?php // echo $_utama_kajian; ?> -->
+				<!-- </div> -->
+			</div>
+			<div class="row" style="background-color: #000000;">
+				<div class="col-md-12">
+					<?php echo $_utama_footer; ?>
+				</div>
+			</div>
+		</div>
+
 		<input type="hidden" id="subuh" value="<?php echo date('Y-m-d') . ' ' . substr(jadwal_shalat()['subuh'], 0, 5) . ":00"; ?>">
 		<input type="hidden" id="dzuhur" value="<?php echo date('Y-m-d') . ' ' . substr(jadwal_shalat()['dzuhur'], 0, 5) . ":00"; ?>">
 		<input type="hidden" id="ashar" value="<?php echo date('Y-m-d') . ' ' . substr(jadwal_shalat()['ashar'], 0, 5) . ":00"; ?>">

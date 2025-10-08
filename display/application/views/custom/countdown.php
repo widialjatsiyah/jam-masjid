@@ -29,7 +29,7 @@
 		<style type="text/css">
 			body {
 				background-color: #000000;
-			    /*background: url("<?php //echo $api; ?>uploads/images/11.jpg")no-repeat center center;*/
+			    /*background: url("<?php //echo $api; ?>public/uploads/images/11.jpg")no-repeat center center;*/
 			    background-size: cover;
 			    overflow:hidden;
 			}
@@ -48,7 +48,7 @@
 	<audio id="myAudio">
 		<source src="<?php echo base_url(); ?>assets/sounds/censor-beep-5.mp3" type="audio/mpeg">
 		<!-- Your browser does not support the audio element. -->
-	</audio>
+	</audio>]
 
 		<div class="wrapper">
 

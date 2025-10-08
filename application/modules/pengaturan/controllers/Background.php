@@ -69,7 +69,7 @@ class Background extends MX_Controller {
 	    $result['status'] = false;
 
 		$tipe = (@$input['ID'] == 'picture') ? 'images' : 'videos';
-		$config['upload_path']          = FCPATH . 'uploads/' . $tipe . '/';
+		$config['upload_path']          = FCPATH . 'public/uploads/' . $tipe . '/';
         $config['allowed_types']        = 'jpg|png';
 		if ($tipe == 'videos') {
         	$config['allowed_types']        = 'mp4|m4v';
@@ -132,7 +132,7 @@ class Background extends MX_Controller {
 
 		$tipe = (@$input['tipe'] == 'picture') ? 'images' : 'videos';
 
-	    $upload_path = FCPATH . 'uploads/' . $tipe . '/' . $input['file']; # check path is correct
+	    $upload_path = FCPATH . 'public/uploads/' . $tipe . '/' . $input['file']; # check path is correct
 
 		$where 	= [$this->tblprefix . 'id' => @$input['id']];
 		$data[$this->tblprefix . 'isdelete'] = '1';			

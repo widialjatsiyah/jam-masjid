@@ -263,7 +263,7 @@ if ( !function_exists('get_background') ) {
 		$_data = [];
 		foreach ($getdata as $key => $value) {
 			$data[] =  $value['background_file'];
-			// str_replace('_client', '', base_url()) . 'uploads/' . $tipe . '/' . 
+			// str_replace('_client', '', base_url()) . 'public/uploads/' . $tipe . '/' . 
 		}
 
 		$_data['files'] = implode(', ', $data);

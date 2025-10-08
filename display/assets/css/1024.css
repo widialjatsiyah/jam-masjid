@@ -14,24 +14,29 @@
     }
 
     .jam {
-        font-size: 40px;
-        font-weight: 900;
-        color: #f44336;
+        font-size: 50px;
+        color: #fff;
+        background: linear-gradient(to right, #000000, #b87f23);
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-shadow: 0 0 10px #fff, 0 0 20px #ffb700;
+        display: inline-block;
+        letter-spacing: 3px;
     }
 
     .hari {
-        font-size: 15px;
+        font-size: 30px;
         font-weight: 600;
         color: #f6f7f8;
     }
 
     .tanggal_masehi {
-        font-size: 15px;
+        font-size: 20px;
         font-weight: 600;
         color: #40c4ff;
     }
     .tanggal_hijriah {
-        font-size: 15px;
+        font-size: 20px;
         font-weight: 600;
         color: #cddc39;
     }
@@ -157,7 +162,8 @@
     .running-text {
         padding: 10px;
         font-size: 50px;
-        font-weight: bolder;
+        font-weight: 400;
+        width: 100%;
     }
 
     .content {
@@ -211,7 +217,7 @@
     }
 
     .nama {
-        font-size: 150px;
+        /* font-size: 150px; */
         color: #fbc02d;
         font-weight: 900;
     }
@@ -225,9 +231,11 @@
     }
 
     .jam {
-        font-size: 190px;
+    border-radius: 5px;
+    /* text-shadow: 0 0 10px #fff, 0 0 20px #ffb700; */
+        font-size: 90px;
         font-weight: 900;
-        color: #f44336;
+        letter-spacing: 20px;
     }
 
     .hari {
@@ -270,7 +278,8 @@
     .running-text {
         padding: 20px;
         font-size: 120px;
-        font-weight: bolder;
+        font-weight: 400;
+        width: 100%;
     }
 
     .content {

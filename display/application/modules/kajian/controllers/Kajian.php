@@ -34,9 +34,26 @@ class Kajian extends MX_Controller {
 		];
 
 		$getdata = $this->m_crud->getdata('array', $this->tbl . ' tbl', ' tbl.*, u.user_nama', $where, $order, null, null, $join);
-		$data['data'] = $getdata;
 
 		if (count($getdata) > 0) {
+			$i = 0;
+			foreach ($getdata as $key => $value) {
+
+				$data['data_1'][0] = @$getdata[0];
+				$data['data_1'][1] = @$getdata[3];
+				// $data['data_1'][1] = @$getdata[1];
+
+				$data['data_2'][0] = @$getdata[1];
+				$data['data_2'][1] = @$getdata[4];
+				// $data['data_2'][1] = @$getdata[3];
+
+				$data['data_3'][0] = @$getdata[2];
+				$data['data_3'][1] = @$getdata[5];
+				// $data['data_3'][1] = @$getdata[5];
+			}
+		}
+
+		if (count($data) > 0) {
 			$this->load->view('kajian', $data);
 		}
 

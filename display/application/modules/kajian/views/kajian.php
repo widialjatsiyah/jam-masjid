@@ -1,11 +1,36 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="fs-kajian owl-carousel text-center text-light p-5">
-            <?php foreach ($data as $key => $value) : ?>
+
+    <div class="col-md-4">
+        <div class="fs-kajian owl-carousel text-center">
+            <?php foreach ($data_1 as $key => $value) : ?>
                 <div class="item">
                     <span class="kaj-ket-ust"><?php echo $value['user_nama']; ?></span><br>
                     <span class="kaj-ket-materi"><?php echo $value['kajian_materi']; ?></span><br>
-                    <span class="kaj-ket-waktu"><?php echo app_date_value($value['kajian_tanggal'], 'd M Y'); ?> <br> <?php echo $value['kajian_waktu']; ?></span>
+                    <span class="kaj-ket-waktu"><?php echo app_date_value($value['kajian_tanggal'], 'd M Y'); ?> - <?php echo $value['kajian_waktu']; ?></span>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="fs-kajian owl-carousel text-center">
+            <?php foreach ($data_2 as $key => $value) : ?>
+                <div class="item">
+                    <span class="kaj-ket-ust"><?php echo $value['user_nama']; ?></span><br>
+                    <span class="kaj-ket-materi"><?php echo $value['kajian_materi']; ?></span><br>
+                    <span class="kaj-ket-waktu"><?php echo app_date_value($value['kajian_tanggal'], 'd M Y'); ?> - <?php echo $value['kajian_waktu']; ?></span>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="fs-kajian owl-carousel text-center">
+            <?php foreach ($data_3 as $key => $value) : ?>
+                <div class="item">
+                    <span class="kaj-ket-ust"><?php echo $value['user_nama']; ?></span><br>
+                    <span class="kaj-ket-materi"><?php echo $value['kajian_materi']; ?></span><br>
+                    <span class="kaj-ket-waktu"><?php echo app_date_value($value['kajian_tanggal'], 'd M Y'); ?> - <?php echo $value['kajian_waktu']; ?></span>
                 </div>
             <?php endforeach; ?>
         </div>

@@ -360,7 +360,7 @@
 <glyph unicode="&#x2013;" glyph-name="endash" horiz-adv-x="508" d="M88 361H588L559 237H60L88 361Z" />
 <glyph unicode="&#x2014;" glyph-name="emdash" horiz-adv-x="1008" d="M88 361H1088L1059 237H60L88 361Z" />
 <glyph unicode="&#x2018;" glyph-name="quoteleft" horiz-adv-x="237" d="M130 495Q131 509 133 524T138 546Q154 613 192 673T276 776L368 741Q333 687 308 626T275 495H130Z" />
-<glyph unicode="&#x2025;" glyph-name="quoteright" horiz-adv-x="237" d="M355 767Q354 753 352 738T347 716Q331 649 293 589T209 486L120 523Q155 577 178 638T210 767H355Z" />
+<glyph unicode="&#x2019;" glyph-name="quoteright" horiz-adv-x="237" d="M355 767Q354 753 352 738T347 716Q331 649 293 589T209 486L120 523Q155 577 178 638T210 767H355Z" />
 <glyph unicode="&#x201a;" glyph-name="quotesinglbase" horiz-adv-x="237" d="M232 154Q231 140 229 125T224 103Q208 36 170 -24T86 -127L-3 -90Q32 -36 55 25T87 154H232Z" />
 <glyph unicode="&#x201c;" glyph-name="quotedblleft" horiz-adv-x="453" d="M130 495Q131 509 133 524T138 546Q154 613 192 673T276 776L368 741Q333 687 308 626T275 495H130ZM347 495Q348 509 350 524T355 546Q371 613 409 673T493 776L585 741Q550 687 525
 626T492 495H347Z" />
