@@ -3,7 +3,7 @@
         <!--Copyright-->
         <div class="footer-copyright py-2 text-center">
             <div class="container-fluid">
-                &copy 2018 <?php echo (date("Y") == "2018") ? "" : " - " . date("Y"); ?> <a href="http://xbxteam.web.id/">XbX Team</a>
+                &copy 2018 <?php echo (date("Y") == "2018") ? "" : " - " . date("Y"); ?> <a href="http://xbxteam.web.id/">Walproject</a>
             </div>
         </div>
         <!--/.Copyright-->

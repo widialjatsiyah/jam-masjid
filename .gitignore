@@ -33,3 +33,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 #codeigniter
 native/*
 user_guide/*
+.htaccess
+application/config/database.php
+application/display/application/config/database.php

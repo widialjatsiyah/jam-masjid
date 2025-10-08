@@ -25,8 +25,8 @@
 			items: 1,
 			loop: true,
 			autoplay: true,
-			autoplayTimeout: 15000,
-			margin: 90,
+			autoplayTimeout: 10000,
+			margin: 0,
 		});
 	});
 </script>

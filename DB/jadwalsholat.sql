@@ -111,7 +111,7 @@ CREATE TABLE `konten` (
 INSERT INTO `konten` (`konten_id`, `konten_posisi`, `konten_arab`, `konten_teks`, `konten_masa_tayang`, `konten_tglmulai`, `konten_tglselesai`, `konten_interval`, `konten_status`, `konten_isdelete`, `konten_createby`, `konten_editedby`, `konten_createdate`, `konten_lastupdate`) VALUES
 (1, '1', NULL, '“Sebaik-baik manusia adalah yang paling bermanfaat bagi manusia.” (HR. Ahmad).', '0', NULL, NULL, 10, '1', '0', 1, 2, '2018-11-27 07:32:37', '2019-09-30 02:16:59'),
 (2, '1', NULL, '\"Dan mohonlah pertolongan (kepada Allah) dengan sabar dan sholat. Dan (sholat) itu sungguh berat kecuali bagi orang-orang yang khusyuk,\"\n(QS. Al-Baqarah 2: Ayat 45)', '0', NULL, NULL, 10, '1', '0', 1, 1, '2018-11-27 07:32:37', '2018-12-10 06:45:23'),
-(3, '2', NULL, 'Source Code Jadwal Sholat Menggunakan PHP by :\'XbX Team\'', '0', NULL, NULL, NULL, '1', '0', 1, 2, '2018-11-22 10:10:34', '2019-10-11 07:52:26'),
+(3, '2', NULL, 'Source Code Jadwal Sholat Menggunakan PHP by :\'Walproject\'', '0', NULL, NULL, NULL, '1', '0', 1, 2, '2018-11-22 10:10:34', '2019-10-11 07:52:26'),
 (4, '1', 'بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيمِ', 'Awali setiap aktivitas dengan Basmalah', '0', NULL, NULL, NULL, '1', '0', 1, 1, '2018-11-22 10:06:07', '2018-12-10 06:43:49'),
 (5, '2', NULL, 'Jumlah Infaq bulan November pekan ke-2 sebesar Rpxxx.xxx, Jazaakumullahu Khairan', '0', NULL, NULL, NULL, '0', '0', 1, NULL, '2018-11-22 10:08:30', '2018-11-28 07:16:54');
 
@@ -139,7 +139,7 @@ CREATE TABLE `master_user` (
 --
 
 INSERT INTO `master_user` (`user_id`, `user_foto`, `user_uid`, `user_password`, `user_nama`, `user_jk`, `user_level`, `user_isdelete`, `user_createdate`, `user_lastupdate`) VALUES
-(1, NULL, 'system', 'cd14821dab219ea06e2fd1a2df2e3582', 'XbX Team', 'L', '1', '0', '2018-11-22 16:38:29', '2019-11-19 00:50:17'),
+(1, NULL, 'system', 'cd14821dab219ea06e2fd1a2df2e3582', 'Walproject', 'L', '1', '0', '2018-11-22 16:38:29', '2019-11-19 00:50:17'),
 (2, NULL, '1801', 'cd14821dab219ea06e2fd1a2df2e3582', 'Ust. Gus', 'L', '2', '0', '2018-12-12 16:22:21', '2019-10-11 07:41:26');
 
 -- --------------------------------------------------------

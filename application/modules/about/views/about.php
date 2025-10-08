@@ -20,7 +20,7 @@
         <div class="card">
             <div class="header">
                 <h2>
-                    <small>XbX Team | @ 2019</small>
+                    <small>Walproject | @ 2019</small>
                 </h2>
             </div>
             <div class="body">
@@ -59,7 +59,7 @@
         <div class="card">
             <div class="header">
                 <h2>
-                    <small>XbX Team | @ 2019</small>
+                    <small>Walproject | @ 2019</small>
                 </h2>
             </div>
             <div class="body">
@@ -85,7 +85,7 @@
             <div class="header">
                 <h2>
                     Release Candidate (RC) V.1.2
-                    <small>XbX Team | @ 2019</small>
+                    <small>Walproject | @ 2019</small>
                 </h2>
             </div>
             <div class="body">
@@ -102,7 +102,7 @@
             <div class="header">
                 <h2>
                     Release Candidate (RC) V.1.1
-                    <small>XbX Team | @ 2019</small>
+                    <small>Walproject | @ 2019</small>
                 </h2>
             </div>
             <div class="body">
@@ -124,7 +124,7 @@
             <div class="header">
                 <h2>
                     Release Candidate (RC) V.1.0
-                    <small>XbX Team  | @ 2019</small>
+                    <small>Walproject  | @ 2019</small>
                 </h2>
             </div>
             <div class="body">
@@ -140,7 +140,7 @@
             <div class="header">
                 <h2>
                     Beta
-                    <small>XbX Team | @ 2019</small>
+                    <small>Walproject | @ 2019</small>
                 </h2>
             </div>
             <div class="body">
@@ -156,7 +156,7 @@
             <div class="header">
                 <h2>
                     Alpha
-                    <small>XbX Team | 22 Nov 2018</small>
+                    <small>Walproject | 22 Nov 2018</small>
                 </h2>
             </div>
             <div class="body">
@@ -173,7 +173,7 @@
             <div class="header">
                 <h2>
                     Initial State
-                    <small>XbX Team | 16 Nov 2018</small>
+                    <small>Walproject | 16 Nov 2018</small>
                 </h2>
             </div>
             <div class="body">

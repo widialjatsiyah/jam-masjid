@@ -9,7 +9,7 @@
 	<meta http-equiv="expires" content="Tue, 18 Feb 1991 1:00:00 GMT" />
 	<meta http-equiv="pragma" content="no-cache" />
 
-	<title>XbX Team - Jadwal Shalat & Informasi</title>
+	<title>Walproject - Jadwal Shalat & Informasi</title>
 
 	<!-- <link href="https://fonts.googleapis.com/css?family=Scheherazade" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">

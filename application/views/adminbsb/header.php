@@ -164,7 +164,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2018 <?php echo (date("Y") == "2018") ? "" : " - " . date("Y"); ?> <a href="http://xbxteam.web.id/">XbX Team</a>
+                    &copy; 2018 <?php echo (date("Y") == "2018") ? "" : " - " . date("Y"); ?> <a href="http://xbxteam.web.id/">Walproject</a>
 
                 </div>
                 <div class="version">
