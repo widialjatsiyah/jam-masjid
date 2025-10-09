@@ -144,13 +144,7 @@
                         </ul>
                     </li>
 
-                    <li class="">
-                        <a href="<?php echo base_url(); ?>about">
-                            <i class="material-icons col-indigo">update</i>
-                            <span>About</span>
-                        </a>
-                    </li>
-
+                  
                     <li class="">
                         <a href="<?php echo base_url(); ?>auth/logout">
                             <i class="material-icons col-indigo">exit_to_app</i>
