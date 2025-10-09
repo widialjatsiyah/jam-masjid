@@ -16,13 +16,13 @@
 		<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Khand" rel="stylesheet"> -->
 
-	<link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="<?php echo base_url(); ?>assets/css/mdb.min.css" rel="stylesheet">
-	<link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet">
-	<link href="<?php echo base_url(); ?>assets/css/1920-1080.css" rel="stylesheet">
-	<link href="<?php echo base_url(); ?>assets/css/1366-768.css" rel="stylesheet">
-	<link href="<?php echo base_url(); ?>assets/css/1280-720.css" rel="stylesheet">
-	<link href="<?php echo base_url(); ?>assets/css/980-430.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css?v=1" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/css/mdb.min.css?v=1" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/css/custom.css?v=1" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/css/1920-1080.css?v=1" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/css/1366-768.css?v=1" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/css/1280-720.css?v=1" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/css/980-430.css?v=1" rel="stylesheet">
 
 	<link href="<?php echo base_url(); ?>assets/plugins/sweet-alert/dist/sweetalert.css" rel="stylesheet">
 

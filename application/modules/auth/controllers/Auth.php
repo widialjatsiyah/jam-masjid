@@ -30,7 +30,7 @@ class Auth extends MX_Controller {
 
 	public function action_login()
 	{
-		if ( !$this->input->is_ajax_request() ) trace('die');
+		// if ( !$this->input->is_ajax_request() ) trace('die');
 
 		$data 	= null;
 		$_error = [];
