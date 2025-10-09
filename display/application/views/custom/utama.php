@@ -78,9 +78,9 @@
 				<div class="col-md-12">
 					<div class="content-data owl-carousel mt-5" id="owl-hari-besar">
 						<?php
-						// Mengambil data hari besar yang akan datang dalam 90 hari
+						// Mengambil data hari besar yang akan datang dalam 360 hari
 						$this->db->where('tanggal_masehi >=', date('Y-m-d'));
-						$this->db->where('tanggal_masehi <=', date('Y-m-d', strtotime('+90 days')));
+						$this->db->where('tanggal_masehi <=', date('Y-m-d', strtotime('+360 days')));
 						$this->db->order_by('tanggal_masehi', 'ASC');
 						$hari_besar_data = $this->db->get('hari_besar_islam')->result_array();
 
@@ -99,8 +99,9 @@
 					                        justify-content: center;
 					                        position: relative;
 					                        color: #ffffffff;
-											background-color: #1f4b2cff;">
-									<div class="content-text" style="text-align: center; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; color: white; max-width: 80%;">
+											background-color: #1f4b2cff;
+											padding:0px">
+									<div class="content-text" style="text-align: center; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; color: white; width: 100%; padding : 0px">
 										<span style="font-size: 1.5rem; margin: 20px 0;"><?php echo $value['nama']; ?></span>
 										<p style="font-size: 1rem;">
 											<?php echo $selisih . " " . $hari_text . " lagi menjelang hari " . $value['nama']. ' '. $value['tahun_hijriah']. ' | '. date_format(date_create($value['tanggal_masehi']), 'd M Y'); ?>
