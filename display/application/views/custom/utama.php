@@ -73,7 +73,7 @@
 			</div>
 		</div>
 
-		<div class="footer container-fluid" style="z-index: 1000;">
+		<div class="footer container-fluid rgba-black-strong" style="z-index: 1000;">
 			<div class="row p-0 m-0" style="color: #ffffffff; background-color: #122c1aff;">
 				<div class="col-md-4">
 					<div class="content-data owl-carousel" id="owl-hari-besar">

@@ -2,13 +2,17 @@
     <?php foreach ($data as $key => $value) { ?>
         <div class="slide" 
              <?php if (!empty($value['konten_banner'])): ?>
-             style="background-image: url('<?php echo str_replace("display/", "", base_url()) . 'public/uploads/images/' . $value['konten_banner']; ?>'); 
-                    background-size: cover; 
-                    background-position: center; height: 50vh; text-align: center; display: flex; align-items: center; justify-content: center;"
-             <?php endif; ?>
+             style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<?php echo str_replace("display/", "", base_url()) . 'public/uploads/images/' . $value['konten_banner']; ?>');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    height: 60vh; text-align: center; display: flex; align-items: center; justify-content: center;"
+             <?php else : ?>
+                style="height: 60vh; text-align: center; display: flex; align-items: center; justify-content: center; background-color : rgba(0, 0, 0, 0.5)"
+            <?php endif; ?>
         >
             <?php if ($value['konten_arab'] != "") : ?>
-                <h1><?php echo $value['konten_arab']; ?></h1>
+                <h1 ><?php echo $value['konten_arab']; ?></h1>
             <?php endif; ?>
             <p><?php echo $value['konten_teks']; ?></p>
         </div>

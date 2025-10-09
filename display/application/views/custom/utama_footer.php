@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<div class="running-text row">
+<div class="running-text row ">
     <div class="col-md-12 col-lg-12 col-xl-12  padding-0">
         <marquee>
             <?php echo (get_running_text()['status']) ? get_running_text()['data'] : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"; ?>
