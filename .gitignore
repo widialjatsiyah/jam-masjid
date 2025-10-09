@@ -35,4 +35,3 @@ native/*
 user_guide/*
 .htaccess
 application/config/database.php
-application/display/application/config/database.php
