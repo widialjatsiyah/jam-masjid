@@ -31,11 +31,25 @@
 					<p class="help-block text-warning">Teks Arab boleh dikosongkan</p>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group ">
 					<label for="teks">Teks Indo <span class="running"></span></label>
 		            <div class="form-line">
 						<textarea type="text" id="teks" name="teks" class="form-control" rows="3"><?php echo @$data->konten_teks; ?></textarea>
 					</div>
+				</div>
+
+				
+				<div class="form-group fbanner">
+					<label for="banner">Banner</label>
+		            <div class="form-line">
+						<input type="file" id="banner" name="banner" class="form-control">
+					</div>
+					<?php if (!empty(@$data->konten_banner)): ?>
+						<div class="m-t-10">
+							<label>Current Banner:</label><br>
+							<img src="<?php echo base_url('public/uploads/images/' . $data->konten_banner); ?>" class="img-responsive" style="max-height: 150px;">
+						</div>
+					<?php endif; ?>
 				</div>
 
 	            <button class="btn bg-blue btn-lg m-t-15 waves-effect" type="submit">
@@ -68,15 +82,18 @@
 
 		if(posisi2.is(':checked')) { 
 			$('.farab').slideUp('slow');
+			$('.fbanner').slideUp('slow');
 		}
 
 		posisi2.change(function(event) {
 			$('.farab').slideUp('slow');
+			$('.fbanner').slideUp('slow');
 			$('span.running').html('Running Text');
 		});
 
 		posisi1.change(function(event) {
 			$('.farab').slideDown('slow');
+			$('.fbanner').slideDown('slow');
 			$('span.running').html('');
 		});
 	});

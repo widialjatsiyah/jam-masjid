@@ -107,6 +107,26 @@ class Konten extends MX_Controller {
 			$data[$this->tblprefix . 'createby']  		= get_current_user_id();
 			$data[$this->tblprefix . 'createdate']  	= $date;
 
+			// Handle banner upload
+			if (!empty($_FILES['banner']['name'])) {
+				$config['upload_path']          = FCPATH . 'public/uploads/images/';
+		        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+				$config['overwrite'] 			= FALSE;
+				$config['remove_spaces'] 		= TRUE;
+		        $config['max_size']             = 10048; // 10MB
+		        $config['encrypt_name']         = TRUE;
+
+		        $this->load->library('upload', $config);
+				$this->upload->initialize($config);
+
+				if (!$this->upload->do_upload('banner')) {
+					$_error[] = $this->upload->display_errors('<li>', '</li>');
+				} else {
+					$upload_data = $this->upload->data();
+					$data[$this->tblprefix . 'banner'] = $upload_data['file_name'];
+				}
+			}
+
         	if ( count($_error) > 0 ) {
 				$response['status']     = 3;
 				$response['message']    = implode("", $_error);
@@ -160,6 +180,35 @@ class Konten extends MX_Controller {
 			$data[$this->tblprefix . 'editedby']  		= get_current_user_id();
 			$data[$this->tblprefix . 'lastupdate']  	= $date;
 
+			// Handle banner upload
+			if (!empty($_FILES['banner']['name'])) {
+				$config['upload_path']          = FCPATH . 'public/uploads/images/';
+		        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+				$config['overwrite'] 			= FALSE;
+				$config['remove_spaces'] 		= TRUE;
+		        $config['max_size']             = 2048; // 2MB
+		        $config['encrypt_name']         = TRUE;
+
+		        $this->load->library('upload', $config);
+				$this->upload->initialize($config);
+
+				if (!$this->upload->do_upload('banner')) {
+					$_error[] = $this->upload->display_errors('<li>', '</li>');
+				} else {
+					$upload_data = $this->upload->data();
+					$data[$this->tblprefix . 'banner'] = $upload_data['file_name'];
+					
+					// Hapus banner lama jika ada
+					$old_data = $this->m_crud->getdata('row', $this->tbl, 'konten_banner', ['where' => ['konten_id' => $input['ID']]]);
+					if (!empty($old_data->konten_banner)) {
+						$old_file_path = FCPATH . 'public/uploads/images/' . $old_data->konten_banner;
+						if (file_exists($old_file_path)) {
+							unlink($old_file_path);
+						}
+					}
+				}
+			}
+
         	if ( count($_error) > 0 ) {
 				$response['status']     = 3;
 				$response['message']    = implode("", $_error);
@@ -199,6 +248,15 @@ class Konten extends MX_Controller {
 		$response	= null;
 		$where		= array();
 		$input 		= app_input();
+
+		// Hapus file banner jika ada
+		$konten_data = $this->m_crud->getdata('row', $this->tbl, 'konten_banner', ['where' => ['konten_id' => $input['id']]]);
+		if (!empty($konten_data->konten_banner)) {
+			$file_path = FCPATH . 'public/uploads/images/' . $konten_data->konten_banner;
+			if (file_exists($file_path)) {
+				unlink($file_path);
+			}
+		}
 
 		if (is_pengguna() AND get_current_user_id() != $input['id']) {
 			$_error[] = "<li>Anda tidak punya akses menghapus data ini</li>";

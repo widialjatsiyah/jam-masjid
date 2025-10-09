@@ -22,7 +22,8 @@ class Konten extends MX_Controller {
 			$this->tblprefix.'status' => '1',
 			$this->tblprefix.'isdelete' => '0'
 		];
-		$getdata = $this->m_crud->getdata('array', $this->tbl, '*', $where);
+		$fields = '*' . ', ' . $this->tblprefix . 'banner as banner';
+		$getdata = $this->m_crud->getdata('array', $this->tbl, $fields, $where);
 
 		$data['initurl'] 			= $this->initurl;
 		$data['fullurl'] 			= $this->fullurl;
@@ -38,7 +39,8 @@ class Konten extends MX_Controller {
 			$this->tblprefix.'status' => '1',
 			$this->tblprefix.'isdelete' => '0'
 		];
-		$getdata = $this->m_crud->getdata('array', $this->tbl, '*', $where);
+		$fields = '*' . ', ' . $this->tblprefix . 'banner as banner';
+		$getdata = $this->m_crud->getdata('array', $this->tbl, $fields, $where);
 
 		$data['data'] = $getdata;
 		$this->load->view('utama_load', $data);

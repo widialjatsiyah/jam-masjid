@@ -73,7 +73,7 @@
 			</div>
 		</div>
 
-		<div class="footer container-fluid">
+		<div class="footer container-fluid" style="z-index: 1000;">
 			<div class="row rgba-black-strong " style="display: none;">
 				<div class="col-md-12">
 

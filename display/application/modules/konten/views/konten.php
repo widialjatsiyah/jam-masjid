@@ -1,8 +1,29 @@
 <div class="content-data">
     <?php foreach ($data as $key => $value) { ?>
-        <div class="slide">
-            <h1><?php echo $value['konten_arab']; ?></h1>
-            <p><?php echo $value['konten_teks']; ?></p>
+        <div class="slide" 
+             <?php if (!empty($value['konten_banner'])): ?>
+             style="background-image: url('<?php echo base_url('public/uploads/images/' . $value['konten_banner']); ?>'); 
+                    background-size: cover; 
+                    background-position: center;
+                    height: 100vh;
+                    width: 100vw;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;"
+             <?php else: ?>
+             style="height: 100vh;
+                    width: 100vw;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;"
+             <?php endif; ?>
+        >
+            <div class="content-text" style="text-align: center; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; color: white; max-width: 80%;">
+                <?php if ($value['konten_arab'] != "") : ?>
+                    <h1><?php echo $value['konten_arab']; ?></h1>
+                <?php endif; ?>
+                <p><?php echo $value['konten_teks']; ?></p>
+            </div>
         </div>
     <?php } ?>
 </div>
@@ -10,8 +31,6 @@
 <script type="text/javascript">
     $(function() {
         $('div.flex-center').css({
-            'background-color': '#000',
-            'opacity': '0.6',
             'position': 'fixed',
             'bottom': '0',
             'min-width': '100',
@@ -44,14 +63,12 @@
             $('.active').removeClass('active').addClass('oldActive');
             if($('.oldActive').is(':last-child')){
                 $('.slide').first().addClass('active');
-                var de = $('div.slide > div').first().attr('delay');
             } else {
                 $('.oldActive').next().addClass('active');
-                var de = $('div.slide > div').first().attr('delay');
             }
             $('.oldActive').removeClass('oldActive');
-            $('.slide').fadeOut('slow');
-            $('.active').slideDown('fast');
+            $('.slide').fadeOut(speed);
+            $('.active').fadeIn(speed);
         }
     });
 </script>
