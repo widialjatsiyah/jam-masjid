@@ -107,9 +107,9 @@ body {
 }
 
 .running-text {
-
+    /*background-color: #000;*/
     border-radius: 5px;
-    /* text-shadow: 0 0 10px #fff, 0 0 20px #ffb700; */
+    text-shadow: 0 0 10px #020101, 0 0 20px #ffff09;
 }
 
 /* .running-text { */

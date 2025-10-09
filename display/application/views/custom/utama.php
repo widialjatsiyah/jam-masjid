@@ -18,7 +18,7 @@
 
 	<link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css?v=1" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/css/mdb.min.css?v=1" rel="stylesheet">
-	<link href="<?php echo base_url(); ?>assets/css/custom.css?v=1" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/css/custom.css?v=2" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/css/1920-1080.css?v=1" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/css/1366-768.css?v=1" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/css/1280-720.css?v=1" rel="stylesheet">
@@ -86,7 +86,10 @@
 								$selisih = $sekarang->diff($tanggal_masehi)->days;
 								$hari_text = ($selisih == 1) ? "hari" : "hari";
 						?>
-								<div class="slideHbesar">
+								<div class="slideHbesar" style="display: flex;
+					                    align-items: center;
+					                    justify-content: center;
+					                    position: relative;line-height: 1.5;">
 									<div class="content-text" style="text-align: center;">
 										<span style="font-size: 1.5rem; margin: 20px 0;"><?php echo $value['nama']; ?></span>
 										<p style="font-size: 1rem;">
@@ -117,7 +120,7 @@
 						if (!empty($kajian)) :
 							foreach ($kajian as $k) :
 						?>
-								<div class="slideHbesar">
+								<div class="slideHbesar" style="padding:5px;line-height: 1;">
 									<div class="content-text" style="text-align: center;">
 										<span style="font-size: 1.5rem; margin: 20px 0; color : #f5dd72ff;"><?php echo $k['kajian_materi']; ?></span><br>
 										<span class="kaj-ket-materi"><?php echo $k['user_nama']; ?></span> <br>

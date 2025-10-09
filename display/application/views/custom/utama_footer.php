@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-2 col-lg-2 col-xl-2 padding-0">
+    <div class="col-md-2 col-lg-2 col-xl-2 padding-0 bg-dark">
         <div class="waktu-shalat-b">
             <div class="waktu-shalat  z-depth-1 text-center">
                 <h2>Terbit</h2>
@@ -7,7 +7,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2 col-lg-2 col-xl-2 padding-0">
+    <div class="col-md-2 col-lg-2 col-xl-2 padding-0 bg-dark">
 
         <div class="waktu-shalat-b">
             <div class="waktu-shalat  darken-3 unique z-depth-1 text-center">
@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2 col-lg-2 col-xl-2 padding-0">
+    <div class="col-md-2 col-lg-2 col-xl-2 padding-0 bg-dark">
 
         <div class="waktu-shalat-b">
             <div class="waktu-shalat  darken-1 z-depth-1 text-center">
@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2 col-lg-2 col-xl-2 padding-0">
+    <div class="col-md-2 col-lg-2 col-xl-2 padding-0 bg-dark">
 
         <div class="waktu-shalat-b">
             <div class="waktu-shalat darken-3 z-depth-1 text-center">
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2 col-lg-2 col-xl-2 padding-0">
+    <div class="col-md-2 col-lg-2 col-xl-2 padding-0 bg-dark">
 
         <div class="waktu-shalat-b">
             <div class="waktu-shalat  darken-3 z-depth-1 text-center">
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2 col-lg-2 col-xl-2 padding-0">
+    <div class="col-md-2 col-lg-2 col-xl-2 padding-0  bg-dark">
 
         <div class="waktu-shalat-b">
             <div class="waktu-shalat  darken-3 z-depth-1 text-center">
@@ -54,13 +54,12 @@
     </div>
 </div>
 
-<div class="row running-text">
+<div class="running-text row">
     <div class="col-md-12 col-lg-12 col-xl-12  padding-0">
         <marquee>
             <?php echo (get_running_text()['status']) ? get_running_text()['data'] : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"; ?>
         </marquee>
     </div>
-</div>
 </div>
 
 <script>
