@@ -74,16 +74,10 @@
 		</div>
 
 		<div class="footer container-fluid" style="z-index: 1000;">
-			<div class="row" style="background-color: #000000;">
-				<div class="col-md-12">
-					<div class="content-data owl-carousel mt-5" id="owl-hari-besar">
+			<div class="row p-0 m-0" style="color: #ffffffff; background-color: #122c1aff;">
+				<div class="col-md-4">
+					<div class="content-data owl-carousel" id="owl-hari-besar">
 						<?php
-						// Mengambil data hari besar yang akan datang dalam 360 hari
-						$this->db->where('tanggal_masehi >=', date('Y-m-d'));
-						$this->db->where('tanggal_masehi <=', date('Y-m-d', strtotime('+360 days')));
-						$this->db->order_by('tanggal_masehi', 'ASC');
-						$hari_besar_data = $this->db->get('hari_besar_islam')->result_array();
-
 						if (!empty($hari_besar_data)) :
 							foreach ($hari_besar_data as $value) :
 								// Hitung selisih hari
@@ -92,19 +86,11 @@
 								$selisih = $sekarang->diff($tanggal_masehi)->days;
 								$hari_text = ($selisih == 1) ? "hari" : "hari";
 						?>
-								<div class="slideHbesar"
-									style="
-					                        display: flex;
-					                        align-items: center;
-					                        justify-content: center;
-					                        position: relative;
-					                        color: #ffffffff;
-											background-color: #1f4b2cff;
-											padding:0px">
-									<div class="content-text" style="text-align: center; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; color: white; width: 100%; padding : 0px">
+								<div class="slideHbesar">
+									<div class="content-text" style="text-align: center;">
 										<span style="font-size: 1.5rem; margin: 20px 0;"><?php echo $value['nama']; ?></span>
 										<p style="font-size: 1rem;">
-											<?php echo $selisih . " " . $hari_text . " lagi menjelang hari " . $value['nama']. ' '. $value['tahun_hijriah']. ' | '. date_format(date_create($value['tanggal_masehi']), 'd M Y'); ?>
+											<?php echo $selisih . " " . $hari_text . " lagi menjelang hari " . $value['nama'] . ' ' . $value['tahun_hijriah'] . ' | ' . date_format(date_create($value['tanggal_masehi']), 'd M Y'); ?>
 										</p>
 									</div>
 								</div>
@@ -117,15 +103,41 @@
 					                    display: flex;
 					                    align-items: center;
 					                    justify-content: center;
-					                    position: relative;
-					                    background-color: #000000;">
-								<div class="content-text" style="text-align: center; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; color: white; max-width: 80%;">
+					                    position: relative;">
+								<div class="content-text" style="text-align: center; background: rgba(0,0,0,0.5); border-radius: 10px; color: white; max-width: 100%;">
 									<h2>Tidak ada hari besar dalam 90 hari ke depan</h2>
 								</div>
 							</div>
 						<?php endif; ?>
 					</div>
 				</div>
+				<div class="col-md-4">
+					<div class="fs-kajian owl-carousel text-center">
+						<?php
+						if (!empty($kajian)) :
+							foreach ($kajian as $k) :
+						?>
+								<div class="slideHbesar">
+									<div class="content-text" style="text-align: center;">
+										<span style="font-size: 1.5rem; margin: 20px 0; color : #f5dd72ff;"><?php echo $k['kajian_materi']; ?></span><br>
+										<span class="kaj-ket-materi"><?php echo $k['user_nama']; ?></span> <br>
+										<span class="kaj-ket-waktu"><?php echo app_date_value($k['kajian_tanggal'], 'd M Y'); ?> - <?php echo $k['kajian_waktu']; ?></span>
+									</div>
+								</div>
+							<?php
+							endforeach;
+						else :
+							?>
+							<div class="slideHbesar">
+								<div class="content-text" >
+									<h5>Tidak ada Kajian</h5>
+								</div>
+							</div>
+						<?php endif; ?>
+					</div>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-12">
 					<?php echo $_utama_footer; ?>
 				</div>
@@ -457,6 +469,16 @@
 				autoplayTimeout: 10000,
 				margin: 0,
 			});
+
+
+			$(".fs-kajian").owlCarousel({
+				items: 1,
+				loop: true,
+				autoplay: true,
+				autoplayTimeout: 10000,
+				margin: 0,
+			});
+
 		});
 	</script>
 

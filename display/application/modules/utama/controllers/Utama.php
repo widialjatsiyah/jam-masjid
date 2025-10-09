@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Utama extends MX_Controller {
+class Utama extends MX_Controller
+{
 
 	private $fullurl 	= '';
 	private $initurl 	= 'utama';
@@ -18,20 +19,37 @@ class Utama extends MX_Controller {
 	public function index()
 	{
 		$where['where'] = [
-			$this->tblprefix.'posisi' => '1',
-			$this->tblprefix.'status' => '1',
-			$this->tblprefix.'isdelete' => '0'
+			$this->tblprefix . 'posisi' => '1',
+			$this->tblprefix . 'status' => '1',
+			$this->tblprefix . 'isdelete' => '0'
 		];
-		$order = [['field' => $this->tblprefix.'id', 'direction' => 'DESC']];
+		$order = [['field' => $this->tblprefix . 'id', 'direction' => 'DESC']];
 		$getdata = $this->m_crud->getdata('array', $this->tbl, '*', $where, $order);
+		
+		// $data = [];
+		// kajian 
+		$date = date("Y-m-d");
+		$this->db->select('kajian.*, u.user_nama');
+		$this->db->from('jadwal_kajian kajian');
+		$this->db->join('master_user u', 'kajian.kajian_userid = u.user_id', 'left');
+		$this->db->where('kajian.kajian_isdelete', '0');
+		$this->db->where("DATE(kajian.kajian_tanggal) >= '{$date}'");
+		$this->db->order_by('kajian.kajian_tanggal', 'ASC');
+		$kajian = $this->db->get()->result_array();
 
+		// var_dump($kajian); die;
 		// Mendapatkan data hari besar
-		$hari_besar_data = $this->get_hari_besar_data();
-
+		// $hari_besar_data = $this->get_hari_besar_data();
+		// Mengambil data hari besar yang akan datang dalam 360 hari
+		$this->db->where('tanggal_masehi >=', date('Y-m-d'));
+		$this->db->where('tanggal_masehi <=', date('Y-m-d', strtotime('+360 days')));
+		$this->db->order_by('tanggal_masehi', 'ASC');
+		$hari_besar_data = $this->db->get('hari_besar_islam')->result_array();
 		$data['initurl'] 			= $this->initurl;
 		$data['fullurl'] 			= $this->fullurl;
 		$data['data'] = $getdata;
-		$data['_utama_hari_besar'] = $hari_besar_data;
+		$data['kajian'] = $kajian;
+		$data['hari_besar_data'] = $hari_besar_data;
 		$this->template->show($this->prefix, $data);
 	}
 
@@ -39,11 +57,11 @@ class Utama extends MX_Controller {
 	{
 
 		$where['where'] = [
-			$this->tblprefix.'posisi' => '1',
-			$this->tblprefix.'status' => '1',
-			$this->tblprefix.'isdelete' => '0'
+			$this->tblprefix . 'posisi' => '1',
+			$this->tblprefix . 'status' => '1',
+			$this->tblprefix . 'isdelete' => '0'
 		];
-		$order = [['field' => $this->tblprefix.'id', 'direction' => 'DESC']];
+		$order = [['field' => $this->tblprefix . 'id', 'direction' => 'DESC']];
 		$getdata = $this->m_crud->getdata('array', $this->tbl, '*', $where);
 
 		$data['data'] = $getdata;
@@ -55,15 +73,15 @@ class Utama extends MX_Controller {
 	{
 		// Memuat modul hari besar
 		$this->load->module('hari_besar');
-		
+
 		// Mengambil data hari besar yang akan datang dalam 90 hari
 		$this->hari_besar->db->where('tanggal_masehi >=', date('Y-m-d'));
 		$this->hari_besar->db->where('tanggal_masehi <=', date('Y-m-d', strtotime('+90 days')));
 		$this->hari_besar->db->order_by('tanggal_masehi', 'ASC');
 		$query = $this->hari_besar->db->get('hari_besar_islam');
-		
+
 		$data['data'] = $query->result_array();
-		
+
 		// Menggunakan pendekatan yang sama seperti konten utama
 		return $this->load->view('hari_besar/hari_besar', $data, true);
 	}
