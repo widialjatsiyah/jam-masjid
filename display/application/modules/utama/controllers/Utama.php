@@ -25,9 +25,13 @@ class Utama extends MX_Controller {
 		$order = [['field' => $this->tblprefix.'id', 'direction' => 'DESC']];
 		$getdata = $this->m_crud->getdata('array', $this->tbl, '*', $where, $order);
 
+		// Mendapatkan data hari besar
+		$hari_besar_data = $this->get_hari_besar_data();
+
 		$data['initurl'] 			= $this->initurl;
 		$data['fullurl'] 			= $this->fullurl;
 		$data['data'] = $getdata;
+		$data['_utama_hari_besar'] = $hari_besar_data;
 		$this->template->show($this->prefix, $data);
 	}
 
@@ -46,7 +50,21 @@ class Utama extends MX_Controller {
 		$this->load->view('utama_load', $data);
 	}
 
+	// Fungsi untuk mendapatkan data hari besar
+	private function get_hari_besar_data()
+	{
+		// Memuat modul hari besar
+		$this->load->module('hari_besar');
+		
+		// Mengambil data hari besar yang akan datang dalam 90 hari
+		$this->hari_besar->db->where('tanggal_masehi >=', date('Y-m-d'));
+		$this->hari_besar->db->where('tanggal_masehi <=', date('Y-m-d', strtotime('+90 days')));
+		$this->hari_besar->db->order_by('tanggal_masehi', 'ASC');
+		$query = $this->hari_besar->db->get('hari_besar_islam');
+		
+		$data['data'] = $query->result_array();
+		
+		// Menggunakan pendekatan yang sama seperti konten utama
+		return $this->load->view('hari_besar/hari_besar', $data, true);
+	}
 }
-
-/* End of file Utama.php */
-/* Location: ./application/modules/utama/controllers/Utama.php */

@@ -63,12 +63,14 @@
             $('.active').removeClass('active').addClass('oldActive');
             if($('.oldActive').is(':last-child')){
                 $('.slide').first().addClass('active');
+                var de = $('div.slide > div').first().attr('delay');
             } else {
                 $('.oldActive').next().addClass('active');
+                var de = $('div.slide > div').first().attr('delay');
             }
             $('.oldActive').removeClass('oldActive');
-            $('.slide').fadeOut(speed);
-            $('.active').fadeIn(speed);
+            $('.slide').fadeOut('slow');
+            $('.active').slideDown('fast');
         }
     });
 </script>

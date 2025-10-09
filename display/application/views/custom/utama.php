@@ -74,15 +74,57 @@
 		</div>
 
 		<div class="footer container-fluid" style="z-index: 1000;">
-			<div class="row rgba-black-strong " style="display: none;">
-				<div class="col-md-12">
-
-				</div>
-				<!-- <div class="col-md-12 kajian"> -->
-					<!-- <?php // echo $_utama_kajian; ?> -->
-				<!-- </div> -->
-			</div>
 			<div class="row" style="background-color: #000000;">
+				<div class="col-md-12">
+					<div class="content-data owl-carousel mt-5" id="owl-hari-besar">
+						<?php
+						// Mengambil data hari besar yang akan datang dalam 90 hari
+						$this->db->where('tanggal_masehi >=', date('Y-m-d'));
+						$this->db->where('tanggal_masehi <=', date('Y-m-d', strtotime('+90 days')));
+						$this->db->order_by('tanggal_masehi', 'ASC');
+						$hari_besar_data = $this->db->get('hari_besar_islam')->result_array();
+
+						if (!empty($hari_besar_data)) :
+							foreach ($hari_besar_data as $value) :
+								// Hitung selisih hari
+								$tanggal_masehi = new DateTime($value['tanggal_masehi']);
+								$sekarang = new DateTime();
+								$selisih = $sekarang->diff($tanggal_masehi)->days;
+								$hari_text = ($selisih == 1) ? "hari" : "hari";
+						?>
+								<div class="slideHbesar"
+									style="
+					                        display: flex;
+					                        align-items: center;
+					                        justify-content: center;
+					                        position: relative;
+					                        color: #ffffffff;
+											background-color: #1f4b2cff;">
+									<div class="content-text" style="text-align: center; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; color: white; max-width: 80%;">
+										<span style="font-size: 1.5rem; margin: 20px 0;"><?php echo $value['nama']; ?></span>
+										<p style="font-size: 1rem;">
+											<?php echo $selisih . " " . $hari_text . " lagi menjelang hari " . $value['nama']. ' '. $value['tahun_hijriah']. ' | '. date_format(date_create($value['tanggal_masehi']), 'd M Y'); ?>
+										</p>
+									</div>
+								</div>
+							<?php
+							endforeach;
+						else :
+							?>
+							<div class="slideHbesar"
+								style="
+					                    display: flex;
+					                    align-items: center;
+					                    justify-content: center;
+					                    position: relative;
+					                    background-color: #000000;">
+								<div class="content-text" style="text-align: center; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; color: white; max-width: 80%;">
+									<h2>Tidak ada hari besar dalam 90 hari ke depan</h2>
+								</div>
+							</div>
+						<?php endif; ?>
+					</div>
+				</div>
 				<div class="col-md-12">
 					<?php echo $_utama_footer; ?>
 				</div>
@@ -406,6 +448,14 @@
 
 			});
 
+			// Inisialisasi carousel untuk hari besar
+			$("#owl-hari-besar").owlCarousel({
+				items: 1,
+				loop: true,
+				autoplay: true,
+				autoplayTimeout: 10000,
+				margin: 0,
+			});
 		});
 	</script>
 
