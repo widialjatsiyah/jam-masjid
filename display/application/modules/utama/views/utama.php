@@ -2,7 +2,7 @@
     <?php foreach ($data as $key => $value) { ?>
         <div class="slide" 
              <?php if (!empty($value['konten_banner'])): ?>
-             style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<?php echo str_replace("display/", "", base_url()) . 'public/uploads/images/' . $value['konten_banner']; ?>');
+             style="background-image: <?=$value['konten_teks'] ? 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), ' : '' ?>url('<?php echo str_replace("display/", "", base_url()) . 'public/uploads/images/' . $value['konten_banner']; ?>');
                     background-size: contain;
                     background-repeat: no-repeat;
                     background-position: center;

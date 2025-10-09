@@ -94,7 +94,7 @@ class Konten extends MX_Controller {
 
 		// form validation
         $this->form_validation->set_rules('posisi', 'posisi', 'required');
-        $this->form_validation->set_rules('teks', 'teks', 'required');
+        // $this->form_validation->set_rules('teks', 'teks', 'required');
         if ($input['posisi'] == '1') {
         	// $this->form_validation->set_rules('arab', 'arab', 'required');
         }
@@ -167,7 +167,7 @@ class Konten extends MX_Controller {
 		$date = date('Y-m-d H:i:s');
 
 		$this->form_validation->set_rules('posisi', 'posisi', 'required');
-        $this->form_validation->set_rules('teks', 'teks', 'required');
+        // $this->form_validation->set_rules('teks', 'teks', 'required');
         if ($input['posisi'] == '1') {
         	// $this->form_validation->set_rules('arab', 'arab', 'required');
         }

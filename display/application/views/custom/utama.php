@@ -281,7 +281,7 @@
 				// $('#date_hijriah').html(moment().subtract(1, 'days').format('iD iMMMM iYYYY') + " H");
 			}
 
-			setInterval(cek_reload, 5000);
+			setInterval(cek_reload, 20000);
 
 			function cek_reload() {
 				$.ajax({
