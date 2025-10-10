@@ -6,13 +6,13 @@
                     background-size: contain;
                     background-repeat: no-repeat;
                     background-position: center;
-                    height: 60vh; text-align: center; display: flex; align-items: center; justify-content: center;"
+                    height: 60vh; text-align: center;  align-items: center; justify-content: center;padding: 50px"
              <?php else : ?>
-                style="height: 60vh; text-align: center; display: flex; align-items: center; justify-content: center; background-color : rgba(0, 0, 0, 0.5)"
+                style="height: 60vh; text-align: center; align-items: center; justify-content: center; background-color : rgba(0, 0, 0, 0.5); padding: 50px"
             <?php endif; ?>
         >
             <?php if ($value['konten_arab'] != "") : ?>
-                <h1 ><?php echo $value['konten_arab']; ?></h1>
+                <h1><?php echo $value['konten_arab']; ?></h1>
             <?php endif; ?>
             <p><?php echo $value['konten_teks']; ?></p>
         </div>
