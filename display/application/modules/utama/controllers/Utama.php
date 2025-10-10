@@ -25,7 +25,7 @@ class Utama extends MX_Controller
 		];
 		$order = [['field' => $this->tblprefix . 'id', 'direction' => 'DESC']];
 		$getdata = $this->m_crud->getdata('array', $this->tbl, '*', $where, $order);
-		
+
 		// $data = [];
 		// kajian 
 		$date = date("Y-m-d");
@@ -37,7 +37,6 @@ class Utama extends MX_Controller
 		$this->db->order_by('kajian.kajian_tanggal', 'ASC');
 		$kajian = $this->db->get()->result_array();
 
-		// var_dump($kajian); die;
 		// Mendapatkan data hari besar
 		// $hari_besar_data = $this->get_hari_besar_data();
 		// Mengambil data hari besar yang akan datang dalam 360 hari
@@ -45,11 +44,31 @@ class Utama extends MX_Controller
 		$this->db->where('tanggal_masehi <=', date('Y-m-d', strtotime('+360 days')));
 		$this->db->order_by('tanggal_masehi', 'ASC');
 		$hari_besar_data = $this->db->get('hari_besar_islam')->result_array();
+
+		$this->db->select('
+			tbl.*, 
+			m.user_nama AS muadzin_1, 
+			m2.user_nama AS muadzin_2, 
+			i.user_nama AS imam, 
+			k.user_nama AS khatib, 
+			c.user_nama AS createby
+		');
+		$this->db->from('petugas_shalat_jumat tbl');
+		$this->db->join('master_user m', 'tbl.petugasshalatjumat_muadzin_1 = m.user_id', 'left');
+		$this->db->join('master_user m2', 'tbl.petugasshalatjumat_muadzin_2 = m2.user_id', 'left');
+		$this->db->join('master_user i', 'tbl.petugasshalatjumat_imam = i.user_id', 'left');
+		$this->db->join('master_user k', 'tbl.petugasshalatjumat_khatib = k.user_id', 'left');
+		$this->db->join('master_user c', 'tbl.petugasshalatjumat_createby = c.user_id', 'left');
+		// Filter data untuk mendapatkan petugas shalat jumat hari ini
+		$this->db->where('tbl.petugasshalatjumat_tanggal', date('Y-m-d'));
+		$petugas_jumat = $this->db->get()->result_array();
+
 		$data['initurl'] 			= $this->initurl;
 		$data['fullurl'] 			= $this->fullurl;
 		$data['data'] = $getdata;
 		$data['kajian'] = $kajian;
 		$data['hari_besar_data'] = $hari_besar_data;
+		$data['petugas_jumat'] = $petugas_jumat;
 		$this->template->show($this->prefix, $data);
 	}
 

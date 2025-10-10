@@ -139,6 +139,52 @@
 						<?php endif; ?>
 					</div>
 				</div>
+				<div class="col-md-4">
+					<div class="fs-kajian owl-carousel text-center">
+						<?php
+						if (!empty($petugas_jumat)) :
+							foreach ($petugas_jumat as $pj) :
+						?>
+						<?php if($pj['khatib']): ?>
+								<div class="slideHbesar" style="padding:5px;line-height: 1;">
+									<div class="content-text" style="text-align: center;">
+										<span style="font-size: 1.5rem; margin: 20px 0; color : #f5dd72ff;">Khatib</span><br>
+										<span class="kaj-ket-materi"><?php echo $pj['khatib']; ?></span> <br>
+										<span class="kaj-ket-waktu"><?php echo app_date_value($pj['petugasshalatjumat_tanggal'], 'd M Y'); ?></span>
+									</div>
+								</div>
+						<?php endif; ?>
+						<?php if($pj['imam']): ?>
+								<div class="slideHbesar" style="padding:5px;line-height: 1;">
+									<div class="content-text" style="text-align: center;">
+										<span style="font-size: 1.5rem; margin: 20px 0; color : #f5dd72ff;">Imam</span><br>
+										<span class="kaj-ket-materi"><?php echo $pj['imam']; ?></span> <br>
+										<span class="kaj-ket-waktu"><?php echo app_date_value($pj['petugasshalatjumat_tanggal'], 'd M Y'); ?></span>
+									</div>
+								</div>
+						<?php endif; ?>
+						<?php if($pj['muadzin_1']): ?>
+								<div class="slideHbesar" style="padding:5px;line-height: 1;">
+									<div class="content-text" style="text-align: center;">
+										<span style="font-size: 1.5rem; margin: 20px 0; color : #f5dd72ff;">Muadzin 1</span><br>
+										<span class="kaj-ket-materi"><?php echo $pj['muadzin_1']; ?></span> <br>
+										<span class="kaj-ket-waktu"><?php echo app_date_value($pj['petugasshalatjumat_tanggal'], 'd M Y'); ?></span>
+									</div>
+								</div>
+						<?php endif; ?>
+						<?php if($pj['muadzin_2']): ?>
+								<div class="slideHbesar" style="padding:5px;line-height: 1;">
+									<div class="content-text" style="text-align: center;">
+										<span style="font-size: 1.5rem; margin: 20px 0; color : #f5dd72ff;">Muadzin 2</span><br>
+										<span class="kaj-ket-materi"><?php echo $pj['muadzin_2']; ?></span> <br>
+										<span class="kaj-ket-waktu"><?php echo app_date_value($pj['petugasshalatjumat_tanggal'], 'd M Y'); ?></span>
+									</div>
+								</div>
+						<?php endif; 
+							endforeach;
+						endif; ?>
+					</div>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
