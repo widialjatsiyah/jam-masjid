@@ -94,15 +94,16 @@ class Jadwal_kajian extends MX_Controller {
 		$date 		= date('Y-m-d H:i:s');
 
 		// form validation
-        $this->form_validation->set_rules('userid', 'Ustadz', 'required');
-        $this->form_validation->set_rules('materi', 'materi', 'required');
+        // $this->form_validation->set_rules('userid', 'Ustadz', 'required');
+        // $this->form_validation->set_rules('materi', 'materi', 'required');
         $this->form_validation->set_rules('tanggal', 'tanggal', 'required');
         $this->form_validation->set_rules('waktu', 'waktu', 'required');
 
         if ( $this->form_validation->run($this) )
         {
-			$data[$this->tblprefix . 'userid']        	= $input['userid'];
+			// $data[$this->tblprefix . 'userid']        	= $input['userid'];
 			$data[$this->tblprefix . 'materi']        	= $input['materi'];
+			$data[$this->tblprefix . 'pemateri']        = $input['pemateri'];
 			$data[$this->tblprefix . 'tanggal']        	= $input['tanggal'];
 			$data[$this->tblprefix . 'waktu']        	= $input['waktu'];
 			$data[$this->tblprefix . 'createdate']  	= $date;
@@ -147,15 +148,16 @@ class Jadwal_kajian extends MX_Controller {
 		$date = date('Y-m-d H:i:s');
 
 		// form validation
-        $this->form_validation->set_rules('userid', 'Ustadz', 'required');
-        $this->form_validation->set_rules('materi', 'materi', 'required');
+        // $this->form_validation->set_rules('userid', 'Ustadz', 'required');
+        // $this->form_validation->set_rules('materi', 'materi', 'required');
         $this->form_validation->set_rules('tanggal', 'tanggal', 'required');
         $this->form_validation->set_rules('waktu', 'waktu', 'required');
 
         if ( $this->form_validation->run($this) )
         {
-			$data[$this->tblprefix . 'userid']        	= $input['userid'];
+			// $data[$this->tblprefix . 'userid']        	= $input['userid'];
 			$data[$this->tblprefix . 'materi']        	= $input['materi'];
+			$data[$this->tblprefix . 'pemateri']        = $input['pemateri'];
 			$data[$this->tblprefix . 'tanggal']        	= $input['tanggal'];
 			$data[$this->tblprefix . 'waktu']        	= $input['waktu'];
 			$data[$this->tblprefix . 'lastupdate']  	= $date;

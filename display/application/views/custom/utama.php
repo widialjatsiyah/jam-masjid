@@ -123,7 +123,7 @@
 								<div class="slideHbesar" style="padding:5px;line-height: 1;">
 									<div class="content-text" style="text-align: center;">
 										<span style="font-size: 1.5rem; margin: 20px 0; color : #f5dd72ff;"><?php echo $k['kajian_materi']; ?></span><br>
-										<span class="kaj-ket-materi"><?php echo $k['user_nama']; ?></span> <br>
+										<span class="kaj-ket-materi"><?php echo $k['kajian_pemateri']; ?></span> <br>
 										<span class="kaj-ket-waktu"><?php echo app_date_value($k['kajian_tanggal'], 'd M Y'); ?> - <?php echo $k['kajian_waktu']; ?></span>
 									</div>
 								</div>

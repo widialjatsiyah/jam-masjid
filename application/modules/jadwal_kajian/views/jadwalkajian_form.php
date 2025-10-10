@@ -13,13 +13,21 @@
 		        <?php echo form_open_multipart($initurl . '/action_' . @$action, 'id="my-form" method="POST" role="form" data-confirm="1"'); ?>
 		            <?php echo form_hidden('ID', @$data[0]['kajian_id']); ?>
 
-		            	<div class="form-group">
-							<label for="select-userid">Ustadz</label>
+		            	<div class="form-group" style="display: none;">
+		            			<label for="select-userid">Ustadz Master</label>
 							<select name="userid" class="form-control select2" id="select-userid" style="width: 100%">
 		                		<?php if (@$data[0]['user_id'] != "") : ?>
 		                			<option selected="selected" value="<?php echo @$data[0]['user_id'] ?>"><?php echo @$data[0]['user_nama'] ?></option>
 		                		<?php endif; ?>
 		                	</select>
+						</div>
+
+						
+						<div class="form-group">
+							<label for="teks">Ustadz</label>
+				            <div class="form-line">
+								<input type="text" name="pemateri" id="pemateri" class="form-control" value="<?php echo @$data[0]['kajian_pemateri']; ?>" placeholder="Nama Ustadz">
+							</div>
 						</div>
 
 						<div class="form-group">
