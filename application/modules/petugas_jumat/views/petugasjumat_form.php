@@ -30,7 +30,7 @@
 				</div>
 
 				<div class="form-group">
-					<label for="select-muazin-2">Khatib</label>
+					<label for="select-muazin-2">Muazin 2</label>
 					<select name="muazin_2" class="form-control show-tick select2" id="select-muazin-2" style="width: 100%">
                 		<?php if (@$data[0]['petugasshalatjumat_muadzin_2'] != "") : ?>
                 			<option selected="selected" value="<?php echo @$data[0]['petugasshalatjumat_muadzin_2'] ?>"><?php echo @$data[0]['petugasshalatjumat_muadzin_2_nama'] ?></option>

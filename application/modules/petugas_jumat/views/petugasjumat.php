@@ -19,9 +19,9 @@
 					    	<tr>
 					      		<th>No</th>
 					      		<th>Tanggal</th>
-					      		<th>Muazin</th>
 					      		<th>Khatib</th>
-					      		<th>Khatib Cadangan</th>
+					      		<th>Muazin</th>
+					      		<th>Muazin 2</th>
 					      		<th>Imam</th>
 					      		<th>Create By</th>
 					      		<th width="220">Action</th>
@@ -32,9 +32,9 @@
 							    <tr>
 							      	<td class="text-center"><?php echo $no++; ?></td>
 							      	<td class="text-center"><?php echo app_date_indo($value['petugasshalatjumat_tanggal']); ?></td>
-							      	<td class="text-center"><?php echo $value['muazin_1']; ?></td>
-							      	<td class="text-center"><?php echo $value['muazin_2']; ?></td>
 							      	<td class="text-center"><?php echo $value['khatib']; ?></td>
+									<td class="text-center"><?php echo $value['muazin_1']; ?></td>
+							      	<td class="text-center"><?php echo $value['muazin_2']; ?></td>
 							      	<td class="text-center"><?php echo $value['imam']; ?></td>
 							      	<td class="text-center"><?php echo $value['createby']; ?></td>
 							      	<td class="text-center">
