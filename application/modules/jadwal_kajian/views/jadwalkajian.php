@@ -29,7 +29,7 @@
 						  	<?php $no=1; foreach ($data as $key => $value) { ?>
 							    <tr>
 							      	<td class="text-center"><?php echo $no++; ?></td>
-							      	<td class=""><?php echo $value['user_nama']; ?></td>
+							      	<td class=""><?php echo $value['kajian_pemateri']; ?></td>
 							      	<td class=""><?php echo $value['kajian_materi']; ?></td>
 							      	<td class="text-center"><span class="text-hide"><?php echo ($value['kajian_tanggal']); ?></span><?php echo app_date_indo($value['kajian_tanggal']); ?></td>
 							      	<td class="text-center"><?php echo $value['kajian_waktu']; ?></td>

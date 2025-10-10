@@ -101,7 +101,7 @@ class Jadwal_kajian extends MX_Controller {
 
         if ( $this->form_validation->run($this) )
         {
-			$data[$this->tblprefix . 'userid']        	= $input['userid'];
+			// $data[$this->tblprefix . 'userid']        	= $input['userid'];
 			$data[$this->tblprefix . 'materi']        	= $input['materi'];
 			$data[$this->tblprefix . 'pemateri']        = $input['pemateri'];
 			$data[$this->tblprefix . 'tanggal']        	= $input['tanggal'];
@@ -155,7 +155,7 @@ class Jadwal_kajian extends MX_Controller {
 
         if ( $this->form_validation->run($this) )
         {
-			$data[$this->tblprefix . 'userid']        	= $input['userid'];
+			// $data[$this->tblprefix . 'userid']        	= $input['userid'];
 			$data[$this->tblprefix . 'materi']        	= $input['materi'];
 			$data[$this->tblprefix . 'pemateri']        = $input['pemateri'];
 			$data[$this->tblprefix . 'tanggal']        	= $input['tanggal'];
