@@ -19,22 +19,22 @@
     .jam {
     border-radius: 5px;
     /* text-shadow: 0 0 10px #fff, 0 0 20px #ffb700; */
-        font-size: 60px;
+        font-size: 3.5rem;
         font-weight: 900;
         letter-spacing: 20px;
     }
 
     .hari {
-        font-size: 18px;
+        font-size: 1.5rem;
         font-weight: 600;
     }
 
     .tanggal_masehi {
-        font-size: 18px;
+        font-size: 1.5rem;
         font-weight: 600;
     }
     .tanggal_hijriah {
-        font-size: 18px;
+        font-size: 1.5rem;
         font-weight: 600;
     }
 
@@ -83,7 +83,7 @@
     }
 
     div.slide > h1 {
-        font-size: 35px;
+        font-size: 15px;
         line-height: 1.3;
         text-shadow: -3px 1px 1px #000!important;
     }

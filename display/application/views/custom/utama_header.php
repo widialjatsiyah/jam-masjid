@@ -17,14 +17,14 @@
 				</div>
 			</div>
 
-			<div class="kanan col-md-4 col-lg-4 col-xl-4 padding-5">
+			<div class="kanan col-md-4 col-lg-4 col-xl-4" style="padding: 2px;">
 				<div style="
         color: #fff;
         background: linear-gradient(to right, #000000, #b87f23);
         letter-spacing: 1px; line-height: 1; text-align : center; padding: 5px 10px;">
 		
 					<span class="hari" id="day"></span>
-					<span class="tanggal_masehi" id="date_masehi"></span> &nbsp;
+					<span class="tanggal_masehi" id="date_masehi"></span> &nbsp;&nbsp;
 					<span class="jam align-middle " id="time"></span><br>
 					<span class="tanggal_hijriah" id="date_hijriah"></span>
 
