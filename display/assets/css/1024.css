@@ -14,7 +14,7 @@
     }
 
     .jam {
-        font-size: 50px;
+        font-size: 3rem;
         color: #fff;
         background: linear-gradient(to right, #000000, #b87f23);
         padding: 10px 20px;
@@ -25,18 +25,18 @@
     }
 
     .hari {
-        font-size: 30px;
+        font-size: 1.5rem;
         font-weight: 600;
         color: #f6f7f8;
     }
 
     .tanggal_masehi {
-        font-size: 20px;
+        font-size: 1.5rem;
         font-weight: 600;
         color: #40c4ff;
     }
     .tanggal_hijriah {
-        font-size: 20px;
+        font-size: 1.5rem;
         font-weight: 600;
         color: #cddc39;
     }
@@ -64,7 +64,7 @@
         padding-top: 40px;
     }
 
-    .jam {
+    /* .jam {
         font-size: 60px;
         font-weight: 900;
         color: #f44336;
@@ -85,7 +85,7 @@
         font-size: 24px;
         font-weight: 600;
         color: #cddc39;
-    }
+    } */
 
     .alamat {
         font-size: 20px;
@@ -98,7 +98,7 @@
 
 @media (min-width: 2460px) { /*2460x1080*/
     .header {
-        margin-top: 10px;
+        /* margin-top: 10px; */
         height: 220px!important;
     }
 
@@ -116,7 +116,7 @@
         padding-top: 40px;
     }
 
-    .jam {
+    /* .jam {
         font-size: 110px;
         font-weight: 900;
         color: #f44336;
@@ -137,7 +137,7 @@
         font-size: 40px;
         font-weight: 600;
         color: #cddc39;
-    }
+    } */
 
     .alamat {
         font-size: 35px;
@@ -149,12 +149,12 @@
     }
 
     .waktu-shalat > h1 {
-        font-size: 70px;
+        font-size: 50px;
         font-weight: 900 !important;
     }
 
     .waktu-shalat > h2 {
-        font-size: 50px;
+        font-size: 25px;
         font-weight: 600 !important;
         /*color: #000000; text-shadow: -0.5px 0 #000000, 0 0.5px #000000, 0.5px 0 #000000, 0 -0.5px #000000;*/
     }
