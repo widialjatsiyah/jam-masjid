@@ -99,6 +99,7 @@ class Service extends MX_Controller {
 		$input = app_input();
 
 		$tipe = ($input['tipe'] == 'picture') ? 'images' : 'videos';
+		$tipe = (empty($input['tipe'])) ? 'images' : $tipe;
 
 		$where['where'] = ['background_tipe' => $input['tipe'], 'background_status' => '1', 'background_isdelete' => '0'];
 		$getdata = _CI()->m_crud->getdata('array','set_background', '*', $where);

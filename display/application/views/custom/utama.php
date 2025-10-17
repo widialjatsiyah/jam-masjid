@@ -575,29 +575,29 @@ document.addEventListener('DOMContentLoaded', function() {
 			// 		.always(function() {});
 			// }
 
-			// function set_bg_images() {
-			// 	$.ajax({
-			// 			url: '<?php echo base_url(); ?>service/get_background',
-			// 			type: 'POST',
-			// 			dataType: 'json',
-			// 			data: {
-			// 				tipe: 'picture'
-			// 			}
-			// 		})
-			// 		.done(function(res) {
-			// 			$('body').fullClip({
-			// 				images: res,
-			// 				transitionTime: 500,
-			// 				wait: 30000
-			// 			});
-			// 		})
-			// 		.fail(function(res) {
-			// 			console.log(res);
-			// 		})
-			// 		.always(function() {});
+			function set_bg_images() {
+				$.ajax({
+						url: '<?php echo base_url(); ?>service/get_background',
+						type: 'POST',
+						dataType: 'json',
+						data: {
+							tipe: 'picture'
+						}
+					})
+					.done(function(res) {
+						$('body').fullClip({
+							images: res,
+							transitionTime: 500,
+							wait: 30000
+						});
+					})
+					.fail(function(res) {
+						console.log(res);
+					})
+					.always(function() {});
 
 
-			// }
+			}
 
 			// $.post('<?php echo base_url(); ?>kajian', {
 			// 	param1: 'value1'
