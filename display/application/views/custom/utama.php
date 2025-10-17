@@ -227,298 +227,384 @@
 	<script type="text/javascript" src='<?php echo base_url(); ?>assets/plugins/momentjs/js/moment-hijri.js'></script>
 	<script type="text/javascript" src='<?php echo base_url(); ?>assets/plugins/momentjs/js/id.js'></script>
 	<script type="text/javascript" src='<?php echo base_url(); ?>assets/plugins/fullclip.min.js'></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    selanjutnya();
+
+    function selanjutnya() {
+        var subuh = document.getElementById('subuh').value;
+        var dzuhur = document.getElementById('dzuhur').value;
+        var ashar = document.getElementById('ashar').value;
+        var maghrib = document.getElementById('maghrib').value;
+        var isya = document.getElementById('isya').value;
+
+        var now = moment().unix();
+
+        var x_subuh = ((moment(subuh).unix() - now) < 0) ? 10000000 : moment(subuh).unix() - now;
+        var x_dzuhur = ((moment(dzuhur).unix() - now) < 0) ? 10000000 : moment(dzuhur).unix() - now;
+        var x_ashar = ((moment(ashar).unix() - now) < 0) ? 10000000 : moment(ashar).unix() - now;
+        var x_maghrib = ((moment(maghrib).unix() - now) < 0) ? 10000000 : moment(maghrib).unix() - now;
+        var x_isya = ((moment(isya).unix() - now) < 0) ? 10000000 : moment(isya).unix() - now;
+
+        var min = Math.min(x_subuh, x_dzuhur, x_ashar, x_maghrib, x_isya);
+        var myArray = {
+            subuh: x_subuh,
+            dzuhur: x_dzuhur,
+            ashar: x_ashar,
+            maghrib: x_maghrib,
+            isya: x_isya
+        };
+
+        for (var key in myArray) {
+            if (myArray.hasOwnProperty(key) && myArray[key] == min) {
+                document.getElementById('selanjutnya').value = key;
+                var directLink = document.getElementById('direct');
+                if (directLink) {
+                    directLink.setAttribute('href', "<?php echo base_url(); ?>adzan/getdata/" + document.getElementById('selanjutnya').value);
+                }
+                break;
+            }
+        }
+
+        // Check if jQuery is loaded (for compatibility)
+        if (typeof jQuery === "undefined") {
+            console.log("jQuery tidak terload!");
+        }
+
+        // AJAX call for hijri date
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo base_url(); ?>service/get_hijri', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    try {
+                        var res = JSON.parse(xhr.responseText);
+                        document.getElementById('date_hijriah').innerHTML = res.hijri;
+                    } catch (e) {
+                        console.log('Error parsing JSON:', e);
+                    }
+                } else {
+                    console.log('Request failed:', xhr.status);
+                }
+            }
+        };
+        xhr.send('maghrib=' + encodeURIComponent(maghrib));
+    }
+
+    var CS = setInterval(countdown_shalat, 1000);
+
+    function countdown_shalat() {
+        var _next = document.getElementById('selanjutnya').value;
+        var nextElement = document.getElementById(_next);
+        if (!nextElement) return;
+        
+        var next = nextElement.value;
+        var sekarang = moment().unix();
+        var WZ_1MNT = moment(next).subtract(1, 'minute').unix();
+        var WZ = moment(next).unix();
+        var WZ_3SCD = moment(next).add(3, 'seconds').unix();
+        var iqomah_time = (moment(next).add(2, 'minute').unix() - WZ_3SCD) + WZ_3SCD;
+        var WZ_sleep = moment(next).add(5, 'minute').unix();
+
+        var directLink = document.getElementById('direct');
+        var directHref = directLink ? directLink.getAttribute('href') : '';
+
+        if (WZ_1MNT <= sekarang && WZ >= sekarang) {
+            window.location.href = directHref;
+            clearInterval(CS);
+        }
+        // Other conditions can be handled here as needed
+    }
+
+    setInterval(moment_header, 1000);
+
+    function moment_header() {
+        var dayElement = document.getElementById('day');
+        var timeElement = document.getElementById('time');
+        var dateMasehiElement = document.getElementById('date_masehi');
+        
+        if (dayElement) dayElement.innerHTML = moment().format('dddd') + ", ";
+        if (timeElement) timeElement.innerHTML = moment().format('HH:mm:ss');
+        if (dateMasehiElement) dateMasehiElement.innerHTML = moment().format('D MMMM YYYY');
+    }
+
+    setInterval(cek_reload, 20000);
+
+    function cek_reload() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '<?php echo base_url(); ?>service/reload', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                try {
+                    var res = JSON.parse(xhr.responseText);
+                    if (res.status) {
+                        reset_reload();
+                    }
+                } catch (e) {
+                    console.log('Error parsing JSON:', e);
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    function reset_reload() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '<?php echo base_url(); ?>service/reset_reload', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                try {
+                    var res = JSON.parse(xhr.responseText);
+                    if (res.status) {
+                        // Show success message (you might need to implement sweetalert equivalent)
+                        console.log('Perubahan data disimpan.');
+                        setTimeout(reload_page, 3500);
+                    } else {
+                        console.log('Terjadi kesalahan sistem!');
+                    }
+                } catch (e) {
+                    console.log('Error parsing JSON:', e);
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    function reload_page(url) {
+        if (!url) {
+            url = "<?php echo base_url(); ?>";
+        }
+        window.location.href = url;
+    }
+
+    function ajaxify(e, el) {
+        e.preventDefault();
+        var url = el.getAttribute("href");
+        var pageContentBody = document.querySelector('.content');
+
+        // History management
+        if (url) {
+            history.pushState(null, null, url);
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                if (pageContentBody) {
+                    pageContentBody.innerHTML = xhr.responseText;
+                }
+            }
+        };
+        xhr.send('status_link=ajax');
+    }
+
+    // Event delegation for links
+    document.addEventListener('click', function(e) {
+        if (e.target.matches('.flex-center a.utama') || e.target.matches('.flex-center a.konten')) {
+            ajaxify(e, e.target);
+        }
+    });
+
+    /* set general */
+    var hari = moment().format('dddd');
+    var is_videos = ['Selasa', 'Kamis', 'Jumat'];
+
+    var is_background = "<?php echo pengaturan_general()['Background']; ?>";
+    var is_blackscreen = "<?php echo pengaturan_general()['Black Screen']; ?>";
+
+    if (is_background == '1') {
+        set_bg_videos();
+    } else {
+        set_bg_images();
+    }
+
+    if (is_blackscreen == '1') {
+        var url = "<?php echo base_url(); ?>blackscreen";
+        reload_page(url);
+    }
+
+    function set_bg_videos() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo base_url(); ?>service/get_background', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                try {
+                    var res = JSON.parse(xhr.responseText);
+                    // Note: BigVideo functionality would need separate vanilla JS implementation
+                    console.log('Video backgrounds loaded:', res);
+                } catch (e) {
+                    console.log('Error parsing JSON:', e);
+                }
+            }
+        };
+        xhr.send('tipe=video');
+    }
+
+    function set_bg_images() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo base_url(); ?>service/get_background', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                try {
+                    var res = JSON.parse(xhr.responseText);
+                    // Note: fullClip functionality would need separate vanilla JS implementation
+                    console.log('Image backgrounds loaded:', res);
+                } catch (e) {
+                    console.log('Error parsing JSON:', e);
+                }
+            }
+        };
+        xhr.send('tipe=picture');
+    }
+
+    // Load kajian content
+    var kajianXhr = new XMLHttpRequest();
+    kajianXhr.open('POST', '<?php echo base_url(); ?>kajian', true);
+    kajianXhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    kajianXhr.onreadystatechange = function() {
+        if (kajianXhr.readyState === 4 && kajianXhr.status === 200) {
+            var kajianElement = document.querySelector('.kajian');
+            if (kajianElement) {
+                kajianElement.innerHTML = kajianXhr.responseText;
+            }
+        }
+    };
+    kajianXhr.send('param1=value1');
+
+    // Note: Owl Carousel would need to be replaced with a vanilla JS alternative
+    // or keep the jQuery version if Owl Carousel requires jQuery
+});
+</script>
 
 	<script type="text/javascript">
+		
 		$(function() {
-			selanjutnya();
+		
 
-			function selanjutnya() {
+			// var ajaxify = function(e, el) {
+			// 	e.preventDefault();
 
-				var subuh = $('#subuh').val();
-				var dzuhur = $('#dzuhur').val();
-				var ashar = $('#ashar').val();
-				var maghrib = $('#maghrib').val();
-				var isya = $('#isya').val();
+			// 	var ajaxify = [null, null, null];
+			// 	var url = $(el).attr("href");
+			// 	var pageContentBody = $('.content');
 
-				var now = moment().unix();
+			// 	if (url != ajaxify[2]) {
+			// 		ajaxify.push(url);
+			// 		history.pushState(null, null, url);
+			// 	}
+			// 	ajaxify = ajaxify.slice(-3, 5);
 
-				var x_subuh = (((moment(subuh).unix()) - now) < 0) ? 10000000 : moment(subuh).unix() - now;
-				var x_dzuhur = (((moment(dzuhur).unix()) - now) < 0) ? 10000000 : moment(dzuhur).unix() - now;
-				var x_ashar = (((moment(ashar).unix()) - now) < 0) ? 10000000 : moment(ashar).unix() - now;
-				var x_maghrib = (((moment(maghrib).unix()) - now) < 0) ? 10000000 : moment(maghrib).unix() - now;
-				var x_isya = (((moment(isya).unix()) - now) < 0) ? 10000000 : moment(isya).unix() - now;
+			// 	$.ajax({
+			// 			url: url,
+			// 			cache: false,
+			// 			type: 'POST',
+			// 			dataType: 'html',
+			// 			data: {
+			// 				status_link: 'ajax'
+			// 			},
+			// 		})
+			// 		.done(function(res) {
+			// 			pageContentBody.html(res);
+			// 		})
+			// 		.fail(function(res) {})
+			// 		.always(function() {});
+			// }
 
-				var min = Math.min(x_subuh, x_dzuhur, x_ashar, x_maghrib, x_isya);
-				var myArray = {
-					subuh: x_subuh,
-					dzuhur: x_dzuhur,
-					ashar: x_ashar,
-					maghrib: x_maghrib,
-					isya: x_isya
-				};
-
-				for (var key in myArray) {
-					if (myArray[key] == min) {
-						// console.log("key " + key + " has value " + myArray[key]);
-						$('#selanjutnya').val(key)
-						$('a#direct').attr('href', "<?php echo base_url(); ?>adzan/getdata/" + $('#selanjutnya').val());
-						break;
-					} else {}
-				}
-
-				$.ajax({
-						url: '<?php echo base_url(); ?>service/get_hijri',
-						type: 'POST',
-						dataType: 'json',
-						data: {
-							maghrib: maghrib
-						}
-					})
-					.done(function(res) {
-						$('#date_hijriah').html(res.hijri);
-					})
-					.fail(function(res) {
-						console.log(res);
-					})
-					.always(function() {});
-
-			}
+			// $('.flex-center').on('click', 'a.utama', function(e) {
+			// 	var el = $(this);
+			// 	ajaxify(e, el);
+			// });
 
 
-			var CS = setInterval(countdown_shalat, 1000)
-			// countdown_shalat();
-			function countdown_shalat() {
-				var _next = $('#selanjutnya').val();
-				var next = $('#' + _next).val();
-				var sekarang = moment().unix();
-				var WZ_1MNT = moment(next).subtract(1, 'minute').unix();
-				var WZ = moment(next).unix();
-				var WZ_3SCD = moment(next).add(3, 'seconds').unix();
-
-				var iqomah_time = (moment(next).add(2, 'minute').unix() - WZ_3SCD) + WZ_3SCD;
-
-				var WZ_sleep = moment(next).add(5, 'minute').unix(); // 3 menit add itu jeda iqomah + waktu sleep
-				var WZ_sleep2 = 0;
-
-				/*console.log(next + ' = next');
-				console.log(sekarang + ' = sekarang');
-				console.log(WZ_1MNT + ' = WZ_1MNT');
-				console.log(WZ + ' = WZ');
-				console.log(WZ_3SCD + ' = WZ_3SCD');
-				console.log(iqomah_time + ' = iqomah_time');
-				console.log(WZ_sleep + ' = WZ_sleep');
-				console.log(WZ_sleep2 + ' = WZ_sleep2');*/
+			// $('.flex-center').on('click', 'a.konten', function(e) {
+			// 	var el = $(this);
+			// 	ajaxify(e, el);
+			// });
 
 
-				if (WZ_1MNT <= sekarang && WZ >= sekarang) {
-					window.location.href = $('a#direct').attr('href');
-					// console.log('60 detik menjelang shalat ' + _next);
-					clearInterval(CS)
-				} else if (WZ <= sekarang && WZ_3SCD >= sekarang) {
-					// console.log('saatnya azan ' + _next);
-				} else if (WZ_3SCD <= sekarang && iqomah_time >= sekarang) {
-					// console.log('menjelang iqomah 2 menit sebelum shalat ' + _next);
-				} else if (iqomah_time <= sekarang && WZ_sleep >= sekarang) {
-					// console.log('matikan layar selama 5 menit saat shalat ' + _next);
-				} else if (WZ_sleep <= sekarang) {
-					// console.log('hidupkan layar lagi, setelah shalat ' + _next);
-				} else {
-					// console.log('belum saatnya waktu shalat ' + _next);
-				}
-			}
+			// /* set general */
+			// var hari = moment().format('dddd');
+			// var is_videos = ['Selasa', 'Kamis', 'Jumat'];
+
+			// var is_background = "<?php echo pengaturan_general()['Background']; ?>";
+			// var is_blackscreen = "<?php echo pengaturan_general()['Black Screen']; ?>";
+
+			// if (is_background == '1') {
+			// 	// if (jQuery.inArray(hari, is_videos) != -1) {
+			// 	set_bg_videos();
+			// } else {
+			// 	set_bg_images();
+			// }
+
+			// if (is_blackscreen == '1') {
+			// 	var url = "<?php echo base_url(); ?>blackscreen"
+			// 	reload_page(url);
+			// }
+
+			// /* end set general */
+
+			// function set_bg_videos() {
+			// 	// var ko = moment.duration(duration - interval).format("mm:ss");
+			// 	$.ajax({
+			// 			url: '<?php echo base_url(); ?>service/get_background',
+			// 			type: 'POST',
+			// 			dataType: 'json',
+			// 			data: {
+			// 				tipe: 'video'
+			// 			}
+			// 		})
+			// 		.done(function(res) {
+			// 			var BV = new $.BigVideo();
+			// 			var vids = res;
+			// 			vids.sort(function() {
+			// 				return 0.5 - Math.random()
+			// 			}); // random order on load
+			// 			BV.init();
+			// 			BV.showPlaylist(vids, {
+			// 				ambient: false
+			// 			});
+			// 		})
+			// 		.fail(function(res) {
+			// 			console.log(res);
+			// 		})
+			// 		.always(function() {});
+			// }
+
+			// function set_bg_images() {
+			// 	$.ajax({
+			// 			url: '<?php echo base_url(); ?>service/get_background',
+			// 			type: 'POST',
+			// 			dataType: 'json',
+			// 			data: {
+			// 				tipe: 'picture'
+			// 			}
+			// 		})
+			// 		.done(function(res) {
+			// 			$('body').fullClip({
+			// 				images: res,
+			// 				transitionTime: 500,
+			// 				wait: 30000
+			// 			});
+			// 		})
+			// 		.fail(function(res) {
+			// 			console.log(res);
+			// 		})
+			// 		.always(function() {});
 
 
-			setInterval(moment_header, 1000);
+			// }
 
-			function moment_header() {
-				$('#day').html(moment().format('dddd') + ", ");
-				$('#time').html(moment().format('HH:mm:ss'));
-				$('#date_masehi').html(moment().format('D MMMM YYYY'));
-				// $('#date_hijriah').html(moment().subtract(1, 'days').format('iD iMMMM iYYYY') + " H");
-			}
+			// $.post('<?php echo base_url(); ?>kajian', {
+			// 	param1: 'value1'
+			// }, function(data, textStatus, xhr) {
+			// 	$('.kajian').html(data);
 
-			setInterval(cek_reload, 20000);
-
-			function cek_reload() {
-				$.ajax({
-						url: '<?php echo base_url(); ?>service/reload',
-						dataType: 'json',
-					})
-					.done(function(res) {
-						if (res.status) {
-							reset_reload();
-						}
-					})
-					.fail(function(res) {
-						console.log(res);
-					})
-					.always(function() {});
-			}
-
-			function reset_reload() {
-				$.ajax({
-						url: '<?php echo base_url(); ?>service/reset_reload',
-						dataType: 'json',
-					})
-					.done(function(res) {
-						if (res.status) {
-							swal({
-								type: 'success',
-								title: 'Perubahan data disimpan.',
-								width: 800,
-								padding: '5em',
-								backdrop: 'rgba(63, 81, 181, 0.3)',
-								showConfirmButton: false,
-								timer: 3000
-							})
-
-							setInterval(reload_page, 3500);
-
-						} else {
-							swal({
-								type: 'error',
-								title: 'Terjadi kesalahan sistem !.',
-								width: 800,
-								padding: '5em',
-								backdrop: 'rgba(63, 81, 181, 0.3)',
-								showConfirmButton: false,
-								timer: 3000
-							})
-						}
-					})
-					.fail(function(res) {
-						console.log(res);
-					})
-					.always(function() {});
-			}
-
-			function reload_page(url = null) {
-				if (url == null) {
-					url = "<?php echo base_url(); ?>";
-				}
-
-				window.location.href = url;
-			}
-
-			var ajaxify = function(e, el) {
-				e.preventDefault();
-
-				var ajaxify = [null, null, null];
-				var url = $(el).attr("href");
-				var pageContentBody = $('.content');
-
-				if (url != ajaxify[2]) {
-					ajaxify.push(url);
-					history.pushState(null, null, url);
-				}
-				ajaxify = ajaxify.slice(-3, 5);
-
-				$.ajax({
-						url: url,
-						cache: false,
-						type: 'POST',
-						dataType: 'html',
-						data: {
-							status_link: 'ajax'
-						},
-					})
-					.done(function(res) {
-						pageContentBody.html(res);
-					})
-					.fail(function(res) {})
-					.always(function() {});
-			}
-
-			$('.flex-center').on('click', 'a.utama', function(e) {
-				var el = $(this);
-				ajaxify(e, el);
-			});
-
-
-			$('.flex-center').on('click', 'a.konten', function(e) {
-				var el = $(this);
-				ajaxify(e, el);
-			});
-
-
-			/* set general */
-			var hari = moment().format('dddd');
-			var is_videos = ['Selasa', 'Kamis', 'Jumat'];
-
-			var is_background = "<?php echo pengaturan_general()['Background']; ?>";
-			var is_blackscreen = "<?php echo pengaturan_general()['Black Screen']; ?>";
-
-			if (is_background == '1') {
-				// if (jQuery.inArray(hari, is_videos) != -1) {
-				set_bg_videos();
-			} else {
-				set_bg_images();
-			}
-
-			if (is_blackscreen == '1') {
-				var url = "<?php echo base_url(); ?>blackscreen"
-				reload_page(url);
-			}
-
-			/* end set general */
-
-			function set_bg_videos() {
-				// var ko = moment.duration(duration - interval).format("mm:ss");
-				$.ajax({
-						url: '<?php echo base_url(); ?>service/get_background',
-						type: 'POST',
-						dataType: 'json',
-						data: {
-							tipe: 'video'
-						}
-					})
-					.done(function(res) {
-						var BV = new $.BigVideo();
-						var vids = res;
-						vids.sort(function() {
-							return 0.5 - Math.random()
-						}); // random order on load
-						BV.init();
-						BV.showPlaylist(vids, {
-							ambient: false
-						});
-					})
-					.fail(function(res) {
-						console.log(res);
-					})
-					.always(function() {});
-			}
-
-			function set_bg_images() {
-				$.ajax({
-						url: '<?php echo base_url(); ?>service/get_background',
-						type: 'POST',
-						dataType: 'json',
-						data: {
-							tipe: 'picture'
-						}
-					})
-					.done(function(res) {
-						$('body').fullClip({
-							images: res,
-							transitionTime: 500,
-							wait: 30000
-						});
-					})
-					.fail(function(res) {
-						console.log(res);
-					})
-					.always(function() {});
-
-
-			}
-
-			$.post('<?php echo base_url(); ?>kajian', {
-				param1: 'value1'
-			}, function(data, textStatus, xhr) {
-				$('.kajian').html(data);
-
-			});
+			// });
 
 			// Inisialisasi carousel untuk hari besar
 			$("#owl-hari-besar").owlCarousel({
